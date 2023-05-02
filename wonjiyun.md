@@ -172,3 +172,124 @@ public class HelloWorldRaspberryPi {
 	}
 }
 </code></pre>
+
+<h2>6-1</h2>
+<h3>데이터와 연산</h3>
+
+data & operation
+
+* Number
+* String 
+* 영상/소리 등등
+
+컴퓨터의 데이터에 따른 처리 방식
+
+* 숫자의 경우 +, -, /, * ..
+* 문자열의 경우 길이를 호출, 특정 구간 제거, 특정 문자열 유무 검사 ..
+* 영상/소리 등등
+
+<h2>6-2</h2>
+<h3>데이터 타입</h3>
+<pre><code>
+public class Datatype{
+	public static void main(String[] args) {
+		System.out.println(6); // Number
+		System.out.println("six"); // String
+		
+		System.out.println("6"); // String 6
+		
+		System.out.println(6+6); // 12
+		System.out.println("6"+"6"); // 66 
+		
+		System.out.println(6*6); // 36
+		System.out.println("6"*"6"); // error
+		
+		System.out.println("1111".length()); // 4 
+		System.out.println(1111.length()); // error
+	}
+} 
+</code></pre>
+
+<h2>6-3</h2>
+<h3>숫자와 연산</h3>
+Math.floor: 내림
+Math.ceil: 올림
+<pre><code>
+public class Number {
+
+	public static void main(String[] args) {
+		//Operator
+		System.out.println(6+2); // 8
+		System.out.println(6-2); // 4
+		System.out.println(6*2); // 12
+		System.out.println(6/2); // 3
+		
+		//eclipse에서의 수학적 연산 Math.
+		System.out.println(Math.PI); //3.141592653589793
+		System.out.println(Math.floor(Math.PI)); // 3.0
+		System.out.println(Math.ceil(Math.PI)); // 4.0
+	}
+}
+</code></pre>
+
+<h2>6-4</h2>
+<h3>문자열의 표현</h3>
+Character VS String
+<pre><code>
+public class StringApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Hello World!"); // String: 여러 개의 character
+		System.out.println('H'); // character: 한 글자
+		System.out.println("H"); //String
+		
+	}
+}
+</code></pre>
+new line
+<pre><code>
+public class StringApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Hello 
+				 World");        		//error
+		
+		System.out.println("Hello "		// Hello World
+				+ "World!"); 
+		
+		System.out.println("Hello \nWorld!"); // Hello 줄바꿈 World!
+		
+		// escape
+		System.out.println("Hello \"World!\""); // Hello "World!"
+		
+	}
+}
+</code></pre>
+escape
+<pre><code>
+public class StringApp {
+
+	public static void main(String[] args) {
+
+		System.out.println("Hello \"World!\""); // Hello "World!"
+		
+	}
+}
+</code></pre>
+
+<h2>6-5</h2>
+<h3>문자열 다루기</h3>
+<pre><code>
+public class StringOperation {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Hello World".length()); // 11
+		System.out.println("Hello, leezche ... bye".replace("leezche", "egoing")); // Hello, egoing ... bye
+		System.out.println("Hello, [[[name]]] ... bye".replace("[[[name]]]", "egoing")); // Hello, egoing ... bye
+		
+	}
+}
+</code></pre>
