@@ -1,115 +1,76 @@
-Hello world를 실행 !
-public class HelloWorldApp {
-
-    public static void main(String args[]) {
-        System.out.println("Hello World!!");
+"데이터 타입"
+// 주로 쓰이는 데이터 타입은 Number와 String이 있다. //
+public class Datatype{
+    public static void main(String[] args) {
+        System.out.println(6); // Number
+        System.out.println("six"); // String
+         
+        System.out.println("6"); // String 6
+         
+        System.out.println(6+6); // 12
+        System.out.println("6"+"6"); // 66
+         
+        System.out.println(6*6); // 36
+//      System.out.println("6"*"6");
+         
+        System.out.println("1111".length()); // 4
+//      System.out.println(1111.length());
     }
 }
-result = "Hello World!!"
-
-자바로 데스크톱 앱 만들기!!
-import javax.swing.*;   
-import java.awt.Dimension;
-import java.awt.Toolkit;
-public class HelloWorldGUIApp{
-    public static void main(String[] args){
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame frame = new JFrame("HelloWorld GUI");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setPreferredSize(new Dimension(400, 300));
-                JLabel label = new JLabel("Hello World!!", SwingConstants.CENTER);
-                frame.getContentPane().add(label);
-                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-                frame.setLocation(dim.width/2-400/2, dim.height/2-300/2);
-
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
+"숫자와 연산"
+//숫자 연산 +, -, *,/를 이용하여 식을 만들어 계산할수 있다. 
+public class Number {
+ 
+    public static void main(String[] args) {
+        // Operator
+        System.out.println(6 + 2); // 8
+        System.out.println(6 - 2); // 4
+        System.out.println(6 * 2); // 12
+        System.out.println(6 / 2); // 3
+ 
+        System.out.println(Math.PI); // 3.141592653589793
+        System.out.println(Math.floor(Math.PI)); // floor는 소수점을 없앤다는 뜻
+        System.out.println(Math.ceil(Math.PI)); // ceil은 소수점 첫째자리수를 올림한다는 의미
+         
+         
     }
+ 
 }
-"Hello World 중 "Hell"부분의 모스부호 대로 LED전구를 점멸하게 하는 앱"
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
-
-public class HelloWorldRaspberryPi {
-
-	public static void main(String[] args) throws InterruptedException {
-
-		final GpioController gpio = GpioFactory.getInstance();
-		final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "PinLED", PinState.LOW);
-		final int SHORT_INTERVAL = 200;
-		final int LONG_INTERVAL = SHORT_INTERVAL * 3;
-		final int LETTER_INTERVAL = SHORT_INTERVAL * 7;
-
-		while (true) {
-			// H
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(LETTER_INTERVAL);
-
-			// e
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(LETTER_INTERVAL);
-
-			// l
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-
-			pin.high();
-			Thread.sleep(LONG_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(LONG_INTERVAL);
-
-			// l
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-
-			pin.high();
-			Thread.sleep(LONG_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.high();
-			Thread.sleep(SHORT_INTERVAL);
-			pin.low();
-			Thread.sleep(LONG_INTERVAL);
-		}
-	}
-}123
+"문자열의 표현"
+//문자열(string), 문자(character)
+//문자열: 문자의 나열 , 문자는 따옴표("") 안에 입력하여 표현, 한 개의 문자만 포함가능!
+//이스케이프 기호는 \ 사용, 특정문자와 결합하여 제어문자로 가능, 쌍따옴표와 같은 특수한 문자와 결합하여 특수한 문자가 일반 문자라고 나타내주는 역할이다.
+//줄바꿈 = \n
+public class StringApp {
+ 
+    public static void main(String[] args) {
+         
+        // Character VS String 
+        System.out.println("Hello World"); // String
+        System.out.println('H'); // Character
+        System.out.println("H"); 
+     
+        System.out.println("Hello "
+                + "World");
+         
+        // new line /n의 n을 뜻함
+        System.out.println("Hello \nWorld");
+         
+        // escape
+        System.out.println("Hello \"World\"");// Hello "World"
+    }
+ 
+}
+"문자열 다루기"
+//replace를 이용해서 name ㅡ> duru로 바꾸는 것
+public class StringOperation {
+ 
+    public static void main(String[] args) {
+         
+        System.out.println("Hello World".length()); // 11
+        System.out.println("Hello, [[[name]]] ... bye. ".replace("[[[name]]]", "duru"));
+ 
+    }
+ 
+}
+ 
