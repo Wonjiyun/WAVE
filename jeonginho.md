@@ -1,122 +1,126 @@
-> 0502
->> Chapter 6
-
->>> 6-2 . 
->>> 데이터 타입
+> 2023-05-03
+> Chapter 8
+>> Chapter 8-1 변수의 정의
 <pre><code>
-public class Datatype{
-    public static void main(Stringp[] args) {
-        System.out.println(6); // 숫자
-        System.out.println("six"); // 문자
-        System.out.println("6"); 
-        // 사람이 보기엔 숫자 이지만 문자처리.
-
-        System.out.println(6+6); // 12 출력
-        System.out.println("6"+"6"); 
-        // 문자처리로 66출력 (결합연산자)
-
-        System.out.println(6*6); // 36 출력
-        System.out.println("6"*"6"); 
-        // 오류가 뜸. 문자열은 곱해지지 않는다.
-
-        System.out.println("1111".length()); 
-        // 문자열의 길이를 알려준다. 따라서 출력값은 4가 나옴.
-
-        System.out.println(1111.length()); 
-        // 오류가 뜸. 숫자에 대한 길이를 알려주는 구문은 없음.
+public class Variable {
+    public static void main(Static[] args) {
+        int a = 1; // a는 정수 1이다.
+        System.out.println(a);
+        
+        int b = 1.1; // 1.1은 정수(x) ERROR.
+        double c = 1.1; // 1.1은 실수(o) -> c는 실수 1.1이다.
+        System.out.println(c);
+        String d = "Hello World"; 
+        // "Hello World"는 문자열 d에 저장됨.
+        System.out.println(d);
     }
 }
 </code></pre>
-
-# 결과 : 6 six 6 12 66 36 4
->>> 6-3 . 
->>> 숫자와 연산
+# 결과 : 1, 1.1, Hello World
+>> Chapter 8-2 변수의 효용
 <pre><code>
-public class Number {
- 
+public class Letter {
     public static void main(String[] args) {
-        //연산자 = Operator
-        System.out.println(6 + 2); // 8 더하기
-        System.out.println(6 - 2); // 4 뺴기
-        System.out.println(6 * 2); // 12 곱하기
-        System.out.println(6 / 2); // 3 나누기
- 
-        System.out.println(Math.PI); // 3.141592653589793
-        System.out.println(Math.floor(Math.PI)); 
-        // 소수점을 없앤다
-        System.out.println(Math.ceil(Math.PI)); 
-        // 3.14에 1이 있으면 그 앞에 값을 올려버린다.
+        String name = "leezche"; 
+        // "leezche"는 문자열 name에 저장됨
+        System.out.println("Hello, "+name+" ... "+name+" ... egoing ... bye");
+        double VAT = 10.0;
+        System.out.println(VAT);
     }
 }
 </code></pre>
-
-# 결과 : 8, 4, 12, 3, 3.141592653589793, 3, 4
->>> 6-4 . 
->>> 문자열의 표현
+# 결과 : Hello, leezche ... leezche ... egoing ... bye
+>> Chapter 8-3 데이터 타입의 변환 - casting
 <pre><code>
-public class StringApp {
- 
+public class Casting {
     public static void main(String[] args) {
-         
-        // Character VS String 
-        System.out.println("Hello World"); // 문자열 표현 ("")
-        System.out.println('H'); 
-        // 문자 표현 ('') *작은 따옴표는 사용할 필요가 없음.
-        System.out.println("H"); 
-     
-        System.out.println("Hello " 
-                + "World"); // Hello와 World를 더해주는 구문임.
-         
-        // new line 약자 = \n
-        System.out.println("Hello \nWorld");
-        // 줄바꿈을 할때는 \n을 사용해야 함.
-         
-        // escape
-        System.out.println("Hello \"World\"");// Hello "World"
-        // 이스케이프 기호는 줄바꿈 기호나 쌍따옴표와 같은 특수한 기호를 문자열에 넣기 위해 사용함.
+        double a = 1.1;
+        double b = 1; 
+        // 정수 1을 실수 1로 바꾸고 b에 담아서 출력 시 1.0이 나옴, 손실이 일어나지 않음
+        double b2 = (double) 1; 
+        // 강제로 1을 실수로 변환하여 1.0 출력.
+        System.out.println(b);
+        int c = 1.1; 
+        // ERROR. 
+        double d = 1.1;
+        int e = (int)1.1; 
+        // 강제로 1.1을 정수로 변환하여 1 출력, 손실이 일어남
+        
+        System.out.println(e);
+        String f = Integer.toString(1); 
+        // 1이 출력 되지만 실제로 1은 문자열이다.
+        System.out.println(f.getClass()); 
+        // .getClass()를 이용하여 출력 시 값의 데이터타입을 함께 출력.
     }
 }
 </code></pre>
-
-# 결과 : Hello World, H, Hello World, Hello, World, Hello "World"
->>> 6-5 . 
->>> 문자열 다루기
+# 결과 : 1.0, 1, 1, class java.lang.String
+> Chapter 9
+>> Chapter 9-1 프로그래밍이란 무엇인가
 <pre><code>
-public class StringOperation {
- 
+public class Program {
     public static void main(String[] args) {
          
-        System.out.println("Hello World".length()); 
-        // 11, 문자열의 길이 출력 (.length())
-
-        System.out.println("Hello, [[[name]]] ... bye. ".replace("[[[name]]]", "duru"));
-        //문자열의 특정 문자열을 다른 문자열로 교체 (.replace())
-        //위 구문에선 [[[name]]] 을 duru 라는 이름으로 교체함.
+        System.out.println(1); // 1 출력
+        System.out.println(2); // 2 출력
+        System.out.println(3); // 3 출력
     }
 }
 </code></pre>
-
-# 결과 : 11, Hello, duru ... bye.
->> Chapter 7
-
->>> 7 . 
->>> 작심삼일공학
-
->>>> ①작심삼일이 되면 잠시 공부를 중단해라.
-
->>>> ②배운 것들을 곰곰히 되새겨 보면서 내 삶의 문제들과 연관지어 보고 실제로 한번 해결하기 위해 노력해보아라.
-
->> Chapter 6 println 응용
+# 결과 : 1, 2, 3
+> 프로그래밍을 하는 이유는 자동화 하기 위함.
+> 컴퓨터 프로그래밍을 이용하여 사람이 잘 못하는 일을 기계에게 위임하여 자동화할 수 있음. (이런 작업을 하는 언어중 가장 유명한 언어가 JAVA.)
+>> Chapter 9-2 프로그램 만들기 - IoT 라이브러리 설치하기
 <pre><code>
-public class FirstClass {
+public class programming {   
+}
+</code></pre>
+> 방법 : iot 사물을 제어할 수 있는 프로그램을 작성하기 위해서 외부 패키지를 다운받아 org 폴더를 programming 프로젝트에 드래그 앤 드랍 시킨다.
+>> Chapter 9-3 IoT 프로그램 만들기
+<pre><code>
+import org.opentutorials.iot.Elevator; 
+// org폴더 > opentutorials > iot > Elevator를 import 함. 
+import org.opentutorials.iot.Lighting;
+// org폴더 > opentutorials > iot > Lighting를 import 함.
+import org.opentutorials.iot.Security;
+// org폴더 > opentutorials > iot > Security를 import 함.
+public class programming {
     public static void main(String[] args) {
-        System.out.println("[내 정보]\n");
-        System.out.println("이름 : 정인호\n");
-        System.out.println("나이 : 23\n");
-        System.out.println("학교 : 동의대학교\n");
-        System.out.println("학과 : 산업융합시스템공학부\n");
-        System.out.println("학번 : 20202395\n");
+        String id = "JAVA APT 507"; 
+        // 동작은 같지만 중복이 제거됨.
+         
+        // Elevator call 
+        Elevator myElevator = new Elevator(id);
+        // Elevator는 데이터 타입, myElevator는 변수
+        myElevator.callForUp(1); 
+        // 1층으로 엘레베이터를 보내라는 명령문
+         
+        // Security off 
+        Security mySecurity = new Security(id);
+        mySecurity.off();
+         
+        // Light on
+        Lighting hallLamp = new Lighting(id+" / Hall Lamp");
+        hallLamp.on();
+        //hallLamp 의 불을 킨다.
+         
+        Lighting floorLamp = new Lighting(id+" / floor Lamp");
+        floorLamp.on();
+        //floorLamp 의 불을 킨다.
     }
 }
-</code></pre> 
->>>>>>> 5eb096a4ee45fd75fc52b736bb092d0555f74bd3
+</code></pre>
+# 결과 : JAVA APT 507 -> Elevator callForUp stopFloor : 1
+# JAVA APT 507 -> Security off
+# JAVA APT 507 / Hall Lamp -> Lighting on
+# JAVA APT 507 / floorLamp -> Lighting on
+> Chapter 10 - 디버거
+>> 이클립스에서 디버그 하는 방법은 우측상단 Run java 버튼 옆 아래 화살표를 눌러 Debug java를 클릭하면 된다.
+>> 이클립스에서 브레이크 포인트를 지정하는 방법은 코드 편집창에서 줄 번호 왼편을 더블클릭하여 브레이크 포인트를 지정할 수 있다.
+>> 브레이크 포인트를 지정하고 디버거를 실행하면 브레이크 포인트까지 코드가 실행되며 그 이후로 실행이 정지된다.
+>> 브레이크 포인트를 해제 하는 방법은 지정했던 브레이크 포인트를 다시 클릭하면 해제할 수 있다.
+>> 이클립스에서 우측의 Variable 탭에서 변수들을 확인할 수 있다.
+>> Step Into 버튼을 클릭하면 코드의 자세한 실행과정(메소드)를 볼 수 있다.
+>> 다시 원래의 코드로 돌아가고자 할 경우에는 Step Return 버튼을 클릭하여 돌아갈 수 있다.
+
+>> (0503) 8, 9, 10 ENDS

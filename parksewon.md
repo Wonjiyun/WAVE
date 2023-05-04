@@ -1,6 +1,5 @@
-0501
 **helloworld출력**
-
+0501
 public class HelloworldApp{
 	public static void main(String[] args) {
 		System.out.println("HelloWorld!!");
@@ -74,4 +73,68 @@ public class StringOperation {
 	}
 
 }
+0503
+public class Variable {
 
+	public static void main(String[] args) {
+		
+		int a = 1;//number => integer==정수 -값과 0 +값을 가짐
+		System.out.println(a);
+		double b = 1.1;//real number =>double 실수 음의값과 0과 양의값과 소수점의 값을 가짐
+		System.out.println(b);
+		String c = "Hello World";//문자열
+		System.out.println(c);
+	}
+
+}
+public class Letter {
+
+	public static void main(String[] args) {
+		String name = "leezche";//변수의 이름을 정해줌으로써 목적을 파악할 수있다.
+		System.out.println("Hello. "+name+" ... "+name+" ... "+name+" ... bye");
+		double VAT = 10.0;
+		System.out.println(VAT);
+	}
+
+}
+public class program {
+
+	public static void main(String[] args) {
+		
+		System.out.println(1);
+		System.out.println(2);
+		System.out.println(3);
+		//만약 위 코드의 개수가 10000개가 넘는다면 사람이 할 수 없는 일을 컴퓨터 언어인 자바에 위임이켜서 실해하는것
+	}
+
+}
+import org.opentutorials.iot.Elevator;
+import org.opentutorials.iot.Lighting;
+import org.opentutorials.iot.Security;
+public class OKjavaGoinHome {
+
+	public static void main(String[] args) {
+		
+		String id = "java apt 507";
+		
+		//Elevator call
+		Elevator myElevator = new Elevator(id);//Elevator 는 데이터 타입, myElevator는 변수.
+		myElevator.callForUp(1);
+		
+		//Security off
+		Security mySecurity = new Security(id);
+		mySecurity.off();
+		
+		//Light on
+		Lighting hallLamp = new Lighting("id+ /  hall lamp");
+		hallLamp.on();
+		
+		Lighting floorLamp = new Lighting("id+ / hall lamp");
+		floorLamp.on();
+		
+		
+
+	}
+
+}
+//디버거 코드를 분석 step over 명령어 하나만 실행 디버거를 통해 잘못된 코드를 찾을 수 있다.

@@ -136,3 +136,60 @@ public class HelloWorldRaspberryPi {
 3. 안드로이드 애플리케이션 만들기
 
 안드로이드 스튜디오를 이용해 안드로이드 앱 개발가능
+
+
+
+=========================================================
+
+
+
+0502 - 자바 1 : 챕터 6,7 강의내용 정리
+
+자바의 데이터를 어떤식으로 연산하여 정리할지 알아본다
+
+
+데이터 종류: 숫자, 문자열, 영상/소리/기타 등등
+
+숫자 : +,-,*,/ 또는 미적분 등
+문자열 : 길이를 호출, 특정구간 제거, 특정 문자열이 있는지 검사
+
+System.out.println() 을 sout -> Ctrl+Space 을 하면 자동입력
+
+//  주석
+
+숫자 : 자바는 숫자를 다른 기호없이 그대로 입력
+       + 연산자는 덧셈
+	   
+문자 : 문자는"" 안에 적음
+       + 연산자는 결합의 연산
+	   문자열 간에는 * 불가능
+	   length 연산은 문자열 길이 반환
+
+문자열과 숫자 연산의 차이
+
+	   System.out.printl(6); number
+	   System.out.printl("six"); string
+	   System.out.printl("6"); string 6
+	   System.out.printl(6+6); 12
+	   System.out.printl("6"+"6"); 66
+	   System.out.printl(6*6); 36
+	   System.out.printl("1111".length()); 4
+
+다른 연산
+
+	   System.out.printl(Math.PI);//파이 3.14159~
+	   System.out.printl(Math.floor(Math.PI));//올림 4
+	   System.out.printl(Math.ceil(Math.PI));//내림 5
+
+
+'Character', "String"
+
+줄바꿈은 \n 로 인식됨
+쌍따옴표를 문장안에 사용하려면 /"@@@/" 형태로 사용
+
+
+	   System.out.printl("Hello World"/length); //11
+	   
+	   System.out.printl("Hello [[[name]]]".replace("[[[name]]]","@@@"));
+
+replace는 앞 문자열에서 원하는 부분을 바꿀수있음 .replace("앞 문자열의 바꿀부분","대신 넣을 부분") 
