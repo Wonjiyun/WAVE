@@ -561,7 +561,157 @@ public class OkJavaGoInHomeinput {
 <h2>12-1</h2>
 <h3>직접 컴파일-실행 - 소개</h3>
 
-**이클립스 없이 자바로 프로그래밍을 하려면 자파 파일을 스스로 컴파일 할 수 있어야 하고 컴파일한 클래스 파일을 실행하는 과정을 거쳐야 한다 이 과정은 운영체제에 대한 많은 지식이 필요하다**
+**이클립스 없이 자바로 프로그래밍을 하려면 자파 파일을 스스로 컴파일 할 수 있어야 하고 컴파일한 클래스 파일을 실행하는 과정을 거쳐야 한다 이 과정은 운영체제에 대한 많은 지식이 필요하다**   
 * Compile
 * Run
 * Input
+
+<h2>13-1</h2>
+<h3>자바 문서 보는 법 - API vs UI</h3>
+
+자바 프로그램을 만들 때 자바의 도구들을 응용하여 우리가 원하는 작업을 시간적 순서에 따라 동작하도록 만들었다. 작업들의 시간적 순서에 주목해서 우리는 프로그램(Program)이라 부리고, 도구의 응용에 주목해서 우리는 애플리케이션(Application)이라고 부른다.   
+
+자바는 자바의 도구들을 응용해서 사용하기 위해서 일정한 조작 장치를 구성하였는데, 이것을 자바 API(Application Programming Interface)라고 한다.   
+
+이렇게 만들어진 자바 프로그램은 사용자가 사용할 수 있다. 이때 사용자가 자바 프로그램을 사용할 수 있도록 만들어둔 장치들을 UI(User Interface)라고 한다.
+
+<h2>13-2</h2>
+<h3>자바 문서 보는 법 - 패키지, 클래스, 변수, 메소드</h3>
+
+**패키지, 클래스, 변수, 메소드**
+클래스 안에는 PI와 같은 변수, floor, ceil과 같은 메소드들이 포함되어 있다. 패키지는 이러한 클래스들을 하나의 묶음으로 정리한 것이다.
+
+<h2>13-3</h2>
+<h3>자바 문서 보는 법 - 클래스</h3>
+
+<pre><code>
+public class ClassApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println(Math.PI);
+		System.out.println(Math.floor(1.6));
+		System.out.println(Math.ceil(1.6));
+	}
+}
+</code></pre>
+
+<h2>13-4</h2>
+<h3>자바 문서 보는 법 - 인스턴스</h3>
+
+**인스턴스란**   
+인스턴스는 클래스를 컴퓨터 상에서 실체화한 것이다.   
+
+**인스턴스를 만드는 이유**   
+인스턴스틑 객체를 다양한 상태에서 사용하고, 기능을 재사용할 경우가 많은 상황에서 유용한 방식이다.
+
+<pre><code>
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+public class InstanceApp {
+
+	public static void main(String[] args) throws IOException {
+		
+		PrintWriter p1 = new PrintWriter("result1.txt");
+		p1.write("Hello 1");
+		p1.close();
+		
+		PrintWriter p2 = new PrintWriter("result2.txt");
+		p2.write("Hello 2");
+		p2.close();
+	}
+}
+</code></pre>
+
+<h2>13-5</h2>
+<h3>자바 문서 보는 법 - 상속</h3>
+
+**클래스의 상속관계**   
+클래스 간에는 서로 계층적인 관계를 갖고 있을 수 있다. 들여쓰기되어 표현된 각각의 클래스 간의 관계는 상속 관계를 나타낸다. PrintWriter 클래스는 Writer 클래스에서 상속을 받았고, Writer 클래스는 Object 클래스로부터 상속을 받았다는 것을 나타낸다.
+
+
+**클래스 간의 상속관계의 특성**   
+자식에 해당하는 클래스는 부모에 해당하는 클래스의 모든 변수와 메소드를 사용할 수 있다. 
+
+<h2>14-2</h2>
+<h3>나의 앱 만들기_기본 기능 구현</h3>
+
+<pre><code>
+public class AccountingApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Value of supply: "+10000.0);
+		System.out.println("VAT: "+10000.0*0.1);
+		System.out.println("Total: "+(10000.0+10000.0*0.1));
+		System.out.println("Expense: "+(10000.0*0.3));
+		System.out.println("Income: "+(10000.0 - 10000.0*0.3));
+		System.out.println("Income: "+(10000.0 - 10000.0*0.3)*0.5);
+		System.out.println("Income: "+(10000.0 - 10000.0*0.3)*0.3);
+		System.out.println("Income: "+(10000.0 - 10000.0*0.3)*0.2);
+	}
+
+}
+</code></pre>
+
+<h2>14-3</h2>
+<h3>나의 앱 만들기_변수 도입</h3>
+특정 값을 지역 변수로 바꾸기 위해 Extract Local Variable 기능 이용하기
+<pre><code>
+public class AccountingApp {
+
+	public static void main(String[] args) {
+		
+		double valueOfSupply = 12345.0;
+		double vatRate = 0.1;
+		double expenseRate=0.3;
+		double vat = valueOfSupply*vatRate;
+		double total = valueOfSupply+vat;
+		double expense = valueOfSupply*expenseRate;
+		double income = valueOfSupply - expense;
+		double dividend1 = income*0.5;
+		double dividend2 = income*0.3;
+		double dividend3 = income*0.2;
+		
+		System.out.println("Value of supply: "+valueOfSupply);
+		System.out.println("VAT: "+vat);
+		System.out.println("Total: "+total);
+		System.out.println("Expense: "+expense);
+		System.out.println("Income: "+income);
+		System.out.println("Dividend1: "+ dividend1);
+		System.out.println("Dividend2: "+ dividend2);
+		System.out.println("Dividend3: "+ dividend3);
+	}
+}
+</code></pre>
+
+<h2>14-4</h2>
+<h3>나의 앱 만들기_입력값 도입</h3>
+
+<pre><code>
+public class AccountingApp {
+
+	public static void main(String[] args) {
+		
+		double valueOfSupply = Double.parseDouble(args[0]);
+		double vatRate = 0.1;
+		double expenseRate=0.3;
+		double vat = valueOfSupply*vatRate;
+		double total = valueOfSupply+vat;
+		double expense = valueOfSupply*expenseRate;
+		double income = valueOfSupply - expense;
+		double dividend1 = income*0.5;
+		double dividend2 = income*0.3;
+		double dividend3 = income*0.2;
+		
+		System.out.println("Value of supply: "+valueOfSupply);
+		System.out.println("VAT: "+vat);
+		System.out.println("Total: "+total);
+		System.out.println("Expense: "+expense);
+		System.out.println("Income: "+income);
+		System.out.println("Dividend1: "+ dividend1);
+		System.out.println("Dividend2: "+ dividend2);
+		System.out.println("Dividend3: "+ dividend3);
+	}
+}
