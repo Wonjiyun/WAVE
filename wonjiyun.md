@@ -495,3 +495,73 @@ public class OkJavaGoInHome {
 **step into**
 코드의 자세한 실행 과정을 들여다볼 수 있음
 다시 원래의 코드로 돌아가고자 할 경우엔 step return 클릭
+
+<h2>11-1</h2>
+<h3>입력과 출력</h3>
+
+프로그램은 입력정보를 받아서 출력을 하는 것이라 할 수 있다. 입력 정보는 문자열, 숫자 등의 아규먼트가 될 수도 있고, 파일, 네트워크를 통해 받은 정보, 소리, 다른 프로그램에서 출력된 정보 등이 될 수 있다. 출력 정보도 화면에 출력하는 형태가 될 수 있고, 파일에 쓸 수도 있고, 소리로 내보낼 수도 있다. 또 다른 프로그램을 출력할 수도 있다. 
+
+<pre><code>
+import javax.swing.JOptionPane;
+
+import org.opentutorials.iot.DimmingLights;
+import org.opentutorials.iot.Elevator;
+import org.opentutorials.iot.Security;
+import org.opentutorials.iot.Lighting;
+
+public class OkJavaGoInHomeinput {
+
+	public static void main(String[] args) {
+		
+		String id = JOptionPane.showInputDialog("Enter a id");
+		String bright = JOptionPane.showInputDialog("Enter a Bright level");
+		
+		// Elevator call
+		Elevator myElevator = new Elevator(id);
+		myElevator.callForUp(1); //JAVA APT 507 -> Elevator callForUp stopFloor : 1
+		
+		// Security off
+		Security MySecurity = new Security(id);
+		MySecurity.off(); //JAVA APT 507 -> Security off
+		
+		// Light on
+		Lighting hallLamp = new Lighting(id+" / Hall Lamp");
+		hallLamp.on(); //JAVA APT 507 / Hall Lamp -> Lighting on
+		
+		Lighting floorLamp = new Lighting(id+" / floor Lamp");
+		floorLamp.on(); //JAVA APT 507 / floor Lamp -> Lighting on
+		
+		DimmingLights moodLamp = new DimmingLights(id+" moodLamp");
+		moodLamp.setBright(bright); //error -> string이라서 에러가 난다 double로 바꿔줘야 함
+		moodLamp.setBright(Double.parseDouble(bright)); //string인 bright가 double로 바뀜
+		moodLamp.on();
+	}
+}
+</code></pre>
+
+<h2>11-2</h2>
+<h3>입력과 출력 - arguments & parameter</h3>
+
+**아규먼트를 입력받아 프로그램 실행시키기**
+* main 메소드의 args 파라미터를 이용해서 입력값을 받는 방법 
+* Run 버튼의 팝업 버튼을 클릭해 Run Configurations 메뉴 클릭 
+* Argument 탭에서 program arguments에 ''로 묶어서 값 입력
+* args는 문자열 배열(array)로 여러 개의 string 데이터가 들어있을 수 있다 인덱스를 통해 배열의 데이터를 꺼내 쓸 수 있고, 인덱스는 0번부터 시작
+<pre><code>
+public class OkJavaGoInHomeinput {
+
+	public static void main(String[] args) {
+		
+		String id = args[0];
+		String bright = args[1];
+		}
+}
+</code></pre>
+
+<h2>12-1</h2>
+<h3>직접 컴파일-실행 - 소개</h3>
+
+**이클립스 없이 자바로 프로그래밍을 하려면 자파 파일을 스스로 컴파일 할 수 있어야 하고 컴파일한 클래스 파일을 실행하는 과정을 거쳐야 한다 이 과정은 운영체제에 대한 많은 지식이 필요하다**
+* Compile
+* Run
+* Input
