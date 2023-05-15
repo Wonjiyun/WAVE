@@ -715,3 +715,732 @@ public class AccountingApp {
 		System.out.println("Dividend3: "+ dividend3);
 	}
 }
+
+<h2>14-6</h2>
+<h3>나의 앱 만들기_조건문</h3>
+
+제어문은 프로그램의 실행 과정을 조건에 따라 바꾸는 것이다. 자바에는 두 가지 제어문이 있다. 조건문과 반복문이 있다.
+
+<pre><code>
+public class AccountingIFApp {
+
+	public static void main(String[] args) {
+		
+		double valueOfSupply = Double.parseDouble(args[0]);
+		double vatRate = 0.1;
+		double expenseRate=0.3;
+		double vat = valueOfSupply*vatRate;
+		double total = valueOfSupply+vat;
+		double expense = valueOfSupply*expenseRate;
+		double income = valueOfSupply - expense;
+		
+		double dividend1;
+		double dividend2;
+		double dividend3;
+		
+		if(income>10000.0) {
+			dividend1 = income*0.5;
+			dividend2 = income*0.3;
+			dividend3 = income*0.2;	
+		}else {
+			dividend1 = income*1;
+			dividend2 = income*0;
+			dividend3 = income*0;
+		}
+		
+		System.out.println("Value of supply: "+valueOfSupply);
+		System.out.println("VAT: "+vat);
+		System.out.println("Total: "+total);
+		System.out.println("Expense: "+expense);
+		System.out.println("Income: "+income);
+		System.out.println("Dividend1: "+ dividend1);
+		System.out.println("Dividend2: "+ dividend2);
+		System.out.println("Dividend3: "+ dividend3);
+	}
+}
+</code></pre>
+
+<h2>14-7</h2>
+<h3>나의 앱 만들기_배열</h3>
+
+args는 String 자료를 여러 개 담을 수 있는 문자열 배열이다. 배열은 같은 자료형을 여러 개 담을 수 있는 객체이다. 배열은 데이터 타입 옆에 대괄호[]를 붙여서 표현하고, 인스턴스를 만들 때는 배열의 길이를 지정하여 생성한다. 배열 내의 데이터는 인덱스를 이용하여 접근할 수 있고 인덱스는 0부터 시작한다.
+
+<pre><code>
+public class AccountingArrayApp {
+
+	public static void main(String[] args) {
+		
+		double valueOfSupply = Double.parseDouble(args[0]);
+		double vatRate = 0.1;
+		double expenseRate=0.3;
+		double vat = valueOfSupply*vatRate;
+		double total = valueOfSupply+vat;
+		double expense = valueOfSupply*expenseRate;
+		double income = valueOfSupply - expense;
+				
+		double[] dividendRates = new double[3];
+		dividendRates[0]=0.5;
+		dividendRates[1]=0.3;
+		dividendRates[2]=0.2;
+		
+		double dividend1=income*dividendRates[0];
+		double dividend2=income*dividendRates[1];
+		double dividend3=income*dividendRates[2];
+
+		System.out.println("Value of supply: "+valueOfSupply);
+		System.out.println("VAT: "+vat);
+		System.out.println("Total: "+total);
+		System.out.println("Expense: "+expense);
+		System.out.println("Income: "+income);
+		System.out.println("Dividend1: "+ dividend1);
+		System.out.println("Dividend2: "+ dividend2);
+		System.out.println("Dividend3: "+ dividend3);
+	}
+}
+</code></pre>
+
+<h2>14-8</h2>
+<h3>나의 앱 만들기_반복문</h3>
+
+반복문은 조건이 참인 한, 해당되는 구간을 계속 반복한다. 배열과 반복문을 함께 이용하면 프로그램을 훨씬 간결하게 만들 수 있다. While문은 괄호 안의 조건이 참인 한 블록 내의 작업을 계속 반복한다.
+
+<pre><code>
+public class AccountingArrayApp {
+
+	public static void main(String[] args) {
+		
+		double valueOfSupply = Double.parseDouble(args[0]);
+		double vatRate = 0.1;
+		double expenseRate=0.3;
+		double vat = valueOfSupply*vatRate;
+		double total = valueOfSupply+vat;
+		double expense = valueOfSupply*expenseRate;
+		double income = valueOfSupply - expense;
+
+
+		System.out.println("Value of supply: "+valueOfSupply);
+		System.out.println("VAT: "+vat);
+		System.out.println("Total: "+total);
+		System.out.println("Expense: "+expense);
+		System.out.println("Income: "+income);
+		
+		double[] dividendRates = new double[3];
+		dividendRates[0]=0.5;
+		dividendRates[1]=0.3;
+		dividendRates[2]=0.2;
+		
+		int i=0;
+		while(i<dividendRates.length) {
+			System.out.println("Dividend1: "+ (income*dividendRates[i]));
+			i=i+1;
+		}
+	}
+}
+</code></pre>
+
+<h2>14-9</h2>
+<h3>나의 앱 만들기_메소드</h3>
+
+
+<pre><code>
+public class AccountingMethodApp {
+	
+	public static double vauleOfSupply;
+	public static double vatRate;
+	public static double expenseRate;
+
+	public static void main(String[] args) {
+		
+		vauleOfSupply = 10000;
+		vatRate = 0.1;
+		expenseRate = 0.3;
+		
+		print();
+
+	}
+
+	public static void print() {
+		System.out.println("Value of supply : "+vauleOfSupply);
+		System.out.println("VAT : "+ getVAT() );
+		System.out.println("Total : "+ getTotal() );
+		System.out.println("Expense : "+ getExpense() );
+		System.out.println("Income : "+ getIncome() );
+		System.out.println("Dividend : "+ getDividend1() );
+		System.out.println("Dividend : "+ getDividend2() );
+		System.out.println("Dividend : "+ getDividend3() );
+	}
+
+	public static double getDividend1() {
+		return getIncome() * 0.5;
+	}
+	
+	public static double getDividend2() {
+		return getIncome() * 0.3;
+	}
+	
+	public static double getDividend3() {
+		return getIncome() * 0.2;
+	}
+
+	public static double getIncome() {
+		return vauleOfSupply-getExpense();
+	}
+
+	public static double getExpense() {
+		return vauleOfSupply*expenseRate;
+	}
+
+	public static double getTotal() {
+		return vauleOfSupply+getVAT();
+	}
+
+	private static double getVAT() {
+		return vauleOfSupply*vatRate;
+	}
+}
+</code></pre>
+
+<h2>14-10</h2>
+<h3>나의 앱 만들기_클래스</h3>
+
+클래스는 서로 연관된 변수와 메소드를 그룹핑한 것이다. 
+<pre><code>
+class Accounting{
+	public static double vauleOfSupply;
+	public static double vatRate;
+	public static double expenseRate;
+	public static void print() {
+		System.out.println("Value of supply : "+vauleOfSupply);
+		System.out.println("VAT : "+ getVAT() );
+		System.out.println("Total : "+ getTotal() );
+		System.out.println("Expense : "+ getExpense() );
+		System.out.println("Income : "+ getIncome() );
+		System.out.println("Dividend : "+ getDividend1() );
+		System.out.println("Dividend : "+ getDividend2() );
+		System.out.println("Dividend : "+ getDividend3() );
+	}
+	
+	public static double getDividend1() {
+		return getIncome() * 0.5;
+	}
+	
+	public static double getDividend2() {
+		return getIncome() * 0.3;
+	}
+	
+	public static double getDividend3() {
+		return getIncome() * 0.2;
+	}
+
+	public static double getIncome() {
+		return vauleOfSupply-getExpense();
+	}
+
+	public static double getExpense() {
+		return vauleOfSupply*expenseRate;
+	}
+
+	public static double getTotal() {
+		return vauleOfSupply+getVAT();
+	}
+
+	private static double getVAT() {
+		return vauleOfSupply*vatRate;
+	}
+	
+}
+public class AccountingClassApp {
+	
+	public static void main(String[] args) {
+		
+		Accounting.vauleOfSupply = 10000;
+		Accounting.vatRate = 0.1;
+		Accounting.expenseRate = 0.3;
+		Accounting.print();
+		//anotherVariable =...;
+		//anotherMethod = ...;
+	}
+}
+</code></pre>
+
+<h2>14-10</h2>
+<h3>나의 앱 만들기_클래스</h3>
+
+인스턴스는 하나의 클래스를 복제해서 서로 다른 데이터의 값과 서로 같은 메소드를 가진 복제본을 만드는 것이다.
+<pre><code>
+class Accounting{
+	public double vauleOfSupply;
+	public double vatRate;
+	public double expenseRate;
+	public void print() {
+		System.out.println("Value of supply : "+vauleOfSupply);
+		System.out.println("VAT : "+ getVAT() );
+		System.out.println("Total : "+ getTotal() );
+		System.out.println("Expense : "+ getExpense() );
+		System.out.println("Income : "+ getIncome() );
+		System.out.println("Dividend : "+ getDividend1() );
+		System.out.println("Dividend : "+ getDividend2() );
+		System.out.println("Dividend : "+ getDividend3() );
+	}
+	
+	public double getDividend1() {
+		return getIncome() * 0.5;
+	}
+	
+	public double getDividend2() {
+		return getIncome() * 0.3;
+	}
+	
+	public double getDividend3() {
+		return getIncome() * 0.2;
+	}
+
+	public double getIncome() {
+		return vauleOfSupply-getExpense();
+	}
+
+	public double getExpense() {
+		return vauleOfSupply*expenseRate;
+	}
+
+	public double getTotal() {
+		return vauleOfSupply+getVAT();
+	}
+
+	private double getVAT() {
+		return vauleOfSupply*vatRate;
+	}
+	
+}
+public class AccountingClassApp {
+	
+	public static void main(String[] args) {
+		
+		Accounting a1 = new Accounting();
+		a1.vauleOfSupply = 10000.0;
+		a1.vatRate = 0.1;
+		a1.expenseRate = 0.3;
+		a1.print();	
+		
+		Accounting a2 = new Accounting();
+		a1.vauleOfSupply = 20000.0;
+		a1.vatRate = 0.05;
+		a1.expenseRate = 0.2;
+		a2.print();
+		
+	}
+}
+</code></pre>
+
+<h1>5월 10일 boostcorse 쉽게 배우는 자바2<h1>
+<h2>1</h2>
+<h3>수업소개</h3>
+
+프로그램이란, 컴퓨터에게 우리가 원하는 작업들을 시간 순서대로 진행하도록 명령하는 것. 조건에 따라서 실행할 작업의 순서를 제어하는 조건문이 필요하다. 같은 작업을 여러 번 반복할 경우 사용되는 것이 반복문이다. 즉 조건문과 반복문을 위해서는 조건을 구성해야 한다. 조건을 구성하기 위해서 자바에서는 Boolean 데이터 타입과 비교 연산 기능을 제공한다.
+
+<h2>2</h2>
+<h3>Boolean Datatype</h3>
+
+boolean 데이터 타입은 참과 거짓을 표현하는 데이터 타입으로 true와 false 키워드를 이용하여 직접 입력할 수도 있고 메소드의 리턴 값이나 비교 연산으로 도출할 수 있다. boolean 데이터 타입은 콘솔에서 출력해보면 true, false로 출력된다는 것을 알 수 있다. 그리고 문자열 객체의 contains 메소드와 같이 결과값이 boolean 데이터 타입인 경우, 또는 비교 연산자를 이용해서 계산하는 경우에도 boolean 데이터 타입을 다루게 된다.
+
+<pre><code>
+ublic class BooleanApp {
+	
+	public static void main(String[] args) {
+		
+		System.out.println("One"); //One
+		System.out.println(1); //1
+		System.out.println(true); //true
+		System.out.println(false); //false
+		
+		String foo = "Hello world";
+		// String true = "Hello world" //reserved word 
+		
+		System.out.println(foo.contains("world")); //true
+		System.out.println(foo.contains("egoing")); //false
+	}
+}
+</code></pre>
+
+<h2>3</h2>
+<h3>비교연산자</h3>
+
+비교연산자는 값의 대소, 같음을 비교하는 연산자이다. 
+* a > b : a가 b보다 큼
+* a < b : a가 b보다 작음
+* a >= b : a가 b보다 크거나 같음
+* a <= b : a가 b보다 작거나 같음
+* a == b : a가 b와 같음
+* a != b : a가 b와 같지 않음 
+설명에 해당하는 진술이 참이라면 true, 아니라면 false를 산출한다.
+
+<pre><code>
+public class ComparisonOperatorApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println(1 > 1); //false
+		System.out.println(1 == 1); //true
+		System.out.println(1 < 1); //flase
+		System.out.println(1 >= 1); //true
+	}
+}
+</code></pre>
+
+<h2>4-1</h2>
+<h3>조건문 형식</h3>
+
+if문 구성요소
+* if - 필수 구성 요소 
+* 조건식 - 필수 구성 요소, 조건식엔 boolean 타입만 들어갈 수 있다
+* 코드블럭(실행할 코드)
+* else if
+* else
+조건문은 중첩할 수 있고, if와 else는 하나의 조건문에 한 번만 들어갈 수 있지만, else if는 여러 개가 들어갈 수 있다.
+
+<pre><code>
+public class IfApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println("a");
+		if(flase) {
+			System.out.println(1);
+		} else if(true) { 
+			System.out.println(2);
+		} else {
+			System.out.println(3);
+			}
+		
+		System.out.println("b");
+	}
+}
+</code></pre>
+
+<h2>4-2</h2>
+<h3>조건문 응용1</h3>
+
+<pre><code>
+public class AuthApp {
+	
+	public static void main(String[] args) {
+
+		String id = "egoing";
+		String inputId = args[0];
+		
+		System.out.println("Hi.");
+		
+		//if(inputId == id) {
+		if(inputId.equals(id)) {
+			System.out.println("Master!");
+		} else {
+			System.out.println("Who are you?");
+		}
+		}
+	}
+}
+</code></pre>
+
+<h2>4-3</h2>
+<h3>조건문 응용2</h3>
+
+boolean 데이터를 연산하기 위해서는 조건 연산자를 사용한다. 조건 연산자는 &&(and), ||(or)가 있다. && 연산자는 전항과 후항이 모두 참일 경우에만 참을 반환하고, 아니면 거짓을 반환한다. || 연산자는 전항과 후항 중 하나라도 참일 경우에 참을 반환하고, 모두 거짓일 때만 거짓을 반환한다. && 연산자는 || 연산자보다 우선순위가 높다.
+<pre><code>
+public class AuthApp {
+	
+	public static void main(String[] args) {
+		
+		String id = "egoing";
+		String inputId = args[0];
+		
+		String pass = "1111";
+		String inputPass = args[1];
+		
+		System.out.println("Hi.");
+		
+		//if(inputId == id) {
+//		if(inputId.equals(id)) {
+//			if(inputId.equals(pass)) {
+//				System.out.println("Master!");
+//			} else {
+//				System.out.println("Wrong password!");
+//			}
+//		} else {
+//			System.out.println("Who are you?");
+//		}
+		
+		if(inputId.equals(id) && inputPass.equals(pass)) {
+			if(inputId.equals(pass)) {
+				System.out.println("Master!");
+		} else {
+			System.out.println("Who are you?");
+		}
+		
+	}
+}
+}
+}
+</code></pre>
+
+<h2>5</h2>
+<h3>== vs equals</h3>
+
+원시 데이터 타입과 클래스   
+원시 데이터 타입 
+* boolean
+* byte
+* char
+* short
+* int
+* long 
+* float
+* double   
+원시 데이터 타입의 변수는 선언되면 메모리(Stack)에 공간이 할당되며, 그 메모리 공간 안에 실제 값이 들어가게 된다. 원시 데이터의 경우 == 연산자는 변수가 가리키는 값을 토대로 비교하게 된다.   
+반면 모든 클래스들은 원시 데이터 타입이 아니다. 클래스는 new 키워드를 통한 인스턴스가 만들어지는 시점에 또다른 메모리 구역(Heap)에서 새로운 공간을 할당하여 값을 저장하고 변수는 그 값이 저장된 메로리의 주소를 가리키게 된다. 그래서 인스턴스 간 == 연산자를 이용할 경우 그 메모리의 주소를 비교하게 된다.   
+한편 문자열 리터럴과 같은 방식으로 문자열을 생성할 때, 이미 같은 문자열을 생성한 적이 있다면 새로 메모리 공간을 할당하지 않고, 새로운 변수는 기존의 문자열이 저장된 메모리(String Pool(Heap))의 주소를 가리키게 된다. 이러한 경우는 == 연산자를 이용하였을 때 같은 주소를 가리키고 있기 때문에 true가 나오게 된다. 
+
+<h2>6</h2>
+<h3>논리연산자</h3>
+
+<pre><code>
+public class LogicalOperatorApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println(1 == 1);
+		
+		//And
+		System.out.println(true && true); //true
+		System.out.println(true && false); //false
+		System.out.println(false && true); //false
+		System.out.println(false && false); //false
+		
+		//Or
+		System.out.println(true || true); //true
+		System.out.println(true || false); //true
+		System.out.println(false || true); //true
+		System.out.println(false || false); //false
+		
+		//not
+		System.out.println(!true); //false
+		System.out.println(!false); //true
+	}
+
+}
+</code></pre>
+
+<pre><code>
+public class AuthApp2 {
+	
+	public static void main(String[] args) {
+		
+		String id = "egoing";
+		String inputId = args[0];
+		
+		String pass = "1111";
+		String pass2 = "2222";
+		String inputPass = args[1];
+		
+		System.out.println("Hi.");
+
+		boolean isRightpass = inputPass.equals(pass) || inputPass.equals(pass2);
+		if(inputId.equals(id) && isRightpass) {
+			if(inputId.equals(pass)) {
+				System.out.println("Master!");
+		} else {
+			System.out.println("Who are you?");
+		}
+		
+	}
+}
+}
+</code></pre>
+
+<h2>7-1</h2>
+<h3>반복문</h3>
+
+조건에 따라 특정한 작업을 반복하게 하는 제어문을 반복문이라고 한다.   
+**while문**   
+while문은 조건식이 참일 동안에 코드블럭의 작업을 반복한다. 조건식에 true를 입력할 경우 조건이 항상 참이기 때문에 무한으로 반복하게 된다.
+**for문**   
+for문은 조건식이 3개의 부분으로 나뉘어져 있다.   
+* 1. 변수의 초기화
+* 2. 조건식
+* 3. 1회 반복을 끝내고 수행할 연산
+각각의 부분은 세미콜론으로 구분되어 있다. 변수의 초기화는 for문이 시작될 때 한번만 수행되고, 조건식이 참일 경우에만 반복한다. 1회 반복이 끝나면 (}부분) 지정한 연산을 처리하고 다시 조건식을 확인하여 반복작업을 실행한다. 변수의 초기화 부분에서 변수를 새로 선언했다면, 그 변수는 for문 안에서만 존재하고 for문을 벗어나면 사라진다.
+
+<pre><code>
+public class LoopApp {
+
+	public static void main(String[] args) {
+		
+		System.out.println(1);
+		
+		System.out.println("===while===");
+		int i = 0;
+		while(i < 3) {
+			System.out.println(2);
+			System.out.println(3);
+//			i = i + 1;
+			i++;
+		}
+		System.out.println("===for===");
+		for(int j =0; j < 3; j++) {
+			System.out.println(2);
+			System.out.println(3);
+		}
+		
+		System.out.println(4);
+	}
+}
+</code></pre>
+
+<h2>7-2</h2>
+<h3>배열</h3>
+
+배열을 선언할 때는 변수 타입명 뒤에 빈 [] 대괄호를 입력하고 변수 이름을 입력한다. 초기화를 할 경우엔 new 키워드를 이용하여 [] 대괄호 안에 요소의 개수를 입력한다. 또는 리터럴로 입력할 수 있는 데이터 타입의 경우, {} 중괄호 안에 요소를 리터럴로 입력할 수 있다. 배열은 인덱스를 통해 접근하고 인덱스는 [] 대괄호 안에 입력한다.
+<pre><code>
+public class ArrayApp {
+
+	public static void main(String[] args) {
+		
+		String[] users = new String[3];
+		users[0] = "egoing";
+		users[1] = "jinhuck";
+		users[2] = "youbin";
+		
+		System.out.println(users[1]); //jinhuck
+		System.out.println(users.length); //3
+		
+		int[] scores = {10, 100, 100};
+		System.out.println(scores[1]); //100
+		System.out.println(users.length); //3
+		
+	}
+}
+</code></pre>
+
+<h2>7-3</h2>
+<h3>반복문 + 배열</h3>
+length 필드는 배열의 요소 개수를 담고 있는 필드이다. 조건식에서 이 필드를 이용하게 되면 직접 배열의 요소 개수를 입력하지 않아도 프로그램을 실행할 때마다 달라질 수 있는 요소의 개수를 반영하여 반복문을 돌릴 수 있다.
+<pre><code>
+public class LoopArray {
+
+	public static void main(String[] args) {
+
+		String[] users = new String[3];
+		users[0] = "egoing";
+		users[1] = "jinhuck";
+		users[2] = "youbin";
+		
+		for(int i=0; i<users.length; i++) {
+			System.out.println("<li>"+users[i]+"</li>");
+		}
+
+	}
+
+}
+</code></pre>
+
+<h2>8-1</h2>
+<h3>종합응용1</h3>
+break문은 더 이상 현재 반복문을 진행하지 않고 빠져나오게 하는 구문이다. 배열에 요소들이 더 남아 있다고 할지라도 break문을 만나면 더 이상 추가적인 연산을 수행하지 않고 현재 반복문의 코드블럭 밖으로 빠져나온다.
+<pre><code>
+public class AuthApp3 {
+
+	public static void main(String[] args) {
+		
+		String[] users = {"egoing", "jinhuck", "youbin"};
+		String inputId = args[0];
+		
+		boolean isLogined = false;
+		for(int i=0; i<users.length; i++) {
+			String currentId = users[i];
+			if(currentId.equals(inputId)) {
+				break;
+			}
+		}
+		System.out.println("Hi,");
+		if(isLogined) {
+			System.out.println("Master!!");
+		} else {
+			System.out.println("Who are you?");
+		}
+	}
+
+}
+</code></pre>
+
+<h2>8-2</h2>
+<h3>종합응용2</h3>
+<pre><code>
+public class AuthApp3 {
+
+	public static void main(String[] args) {
+		
+		String[][] users = {
+				{"egoing", "1111"},
+				{"jinhuck", "2222"},
+				{"youbin", "3333"}
+				
+		};
+		String inputId = args[0];
+		String inputPass = args[1];
+		
+		boolean isLogined = false;
+		for(int i=0; i<users.length; i++) {
+			String[] current = users[i];
+			if(current.equals(inputId) && current.equals(inputPass)) {
+				break;
+			}
+		}
+		System.out.println("Hi,");
+		if(isLogined) {
+			System.out.println("Master!!");
+		} else {
+			System.out.println("Who are you?");
+		}
+	}
+
+}
+</code></pre>
+
+<h2>JAVA 메소드 2</h2>
+<h3>이미 익숙한 메소드</h3>
+Math 클래스의 floor 메소드는 double형 자료형을 받아서 올림 연산을 수행하여 double형으로 반환한다. main 메소드는 특수한 메소드로, 클래스를 실행할 때 어떠한 명령을 내리지 않아도 main 메소드를 실행한다.
+<pre><code>
+public class FirstMethod {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Hello Method"); //Hello Method
+		System.out.println(Math.floor(1.1)); //1
+	}
+}
+</code></pre>
+
+
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
