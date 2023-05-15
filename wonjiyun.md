@@ -715,6 +715,7 @@ public class AccountingApp {
 		System.out.println("Dividend3: "+ dividend3);
 	}
 }
+</code></pre>
 
 <h2>14-6</h2>
 <h3>나의 앱 만들기_조건문</h3>
@@ -801,9 +802,7 @@ public class AccountingArrayApp {
 
 <h2>14-8</h2>
 <h3>나의 앱 만들기_반복문</h3>
-
 반복문은 조건이 참인 한, 해당되는 구간을 계속 반복한다. 배열과 반복문을 함께 이용하면 프로그램을 훨씬 간결하게 만들 수 있다. While문은 괄호 안의 조건이 참인 한 블록 내의 작업을 계속 반복한다.
-
 <pre><code>
 public class AccountingArrayApp {
 
