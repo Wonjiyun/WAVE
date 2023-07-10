@@ -1418,28 +1418,993 @@ public class FirstMethod {
 }
 </code></pre>
 
+<h2>JAVA 메소드 3</h2>
+<h3>메소드의 기본 형식</h3>
+
+메소드의 필요성   
+쉽게 같은 코드를 재사용하고, 유지보수를 쉽게 할 수 있다.
+<pre><code>
+public class WhyMethod {
+	public static void printTwoTimesA(){
+		System.out.println("-"); 
+		System.out.println("a"); 
+		System.out.println("a"); 
+	}
+
+	public static void main(String[] args) {
+		
+		printTwoTimesA();
+		printTwoTimesA();
+		printTwoTimesA();
+	}
+}
+</code></pre>
+
+<h2>JAVA 메소드 4</h2>
+<h3>메소드의 입력</h3>
+파라미터와 아규먼트   
+매개변수(파라미터)는 메소드 안에서 통용되는 변수이다. 메소드를 호출할 때는 실제 데이터를 메소드의 파라미터 안에 넣게 되는데, 이를 인자(아규먼트)라고 한다. main 메소드는 문자열 배열인 args 파라미터를 이용한다. 프로그램을 실행할 때 아규먼트로 주어지는 값을 넣게 되면 args에 아규먼트 값들이 들어가게 되고, 이를 이용해서 작업을 실행하게 된다.
+<pre><code>
+public class WhyMethod {
+
+	public static void main(String[] args) {
+					  //인자, argument
+		printTwoTimes("a","-");
+		printTwoTimes("a","*");
+		printTwoTimes("a","&");
+		printTwoTimes("b","!");
+	}
+									//매개변수, parameter 
+	public static void printTwoTimes(String text, String delimiter){
+		System.out.println(delimiter); 
+		System.out.println(text); 
+		System.out.println(text); 
+	}
+}
+</code></pre>
+
+<h2>JAVA 메소드 5</h2>
+<h3>메소드의 출력</h3>
+
+**값을 반환하는 메소드**   
+두 메소드에서 사용하는 문자열을 구성하는 메소드를 만들어서 그것을 이용하게 한다면 콘솔에 출력하거나 파일에 출력하거나 문자열 구성은 한 번만 실행하지 않을까? 그렇게 하기 위해선 메소드가 문자열 객체를 반환하도록 한다.   
+메소드가 데이터를 반환하도록 만들기 위해선 몇 가지 구성 요소가 필요하다.   
+* 반환되는 데이터의 타입
+* return   
+반환되는 데이터의 타입은 메소드의 이름 앞에 넣어서 이 메소드가 그 데이터 타입을 반환한다는 것을 명시한다. 만약 메소드가 아무것도 반환하지 않는다면 void를 넣어 둔다. 그리고 우리가 작업을 처리한 후 반환하고자 하는 데이터를 'return 반환값' 형식으로 입력하여 메소드가 데이터를 반환하도록 한다. 그리고 return이 실행된 후에는 그 뒤에 실행한 코드가 메소드에 남아 있어도 더 처리하지 않고 바로 메소드로 빠져 나온다.
 
 <pre><code>
+public class OutputMethod {
+
+	public static String a(){
+		return "a";
+	}
+
+	public static String one(){
+		return 1;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(a());
+		System.out.println(one());
+	}
+}
 </code></pre>
 <pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WhyMethod {
+	public static void main (String[] args) throws IOException {
+
+		System.out.println(twoTimes("a", "-"));
+		FileWriter fw = new FileWriter("out.txt");
+		fw.write(twoTimes("a", "*"));
+		fw.close();
+	}
+	public static String twoTimes(String text, String delimiter){
+		String out = "";
+		out = out + delimiter + "\n";
+		out = out + text + "\n";
+		out = out + text + "\n";
+		return out;
+		}
+}
 </code></pre>
+
+<h2>JAVA 메소드 6</h2>
+<h3>메소드의 기본 활용</h3>
+
+<pre><code>
+public class AccountingApp {
+	public static void main(String[] args){
+		double valueOfSupply = 10000.0;
+		double vatRate = 0.1;
+		double vat = valueOfSupply * vatRate;
+		double total = valueOfsupply + vat;
+
+		System.out.println("Value of supply:"+valueOfSupply);
+		System.out.println("VAT:"+vat);
+		System.out.println("Total:"+total);
+	}
+}
+</code></pre>
+공급가와 부가가치세율은 모든 메소드에서 바로 접근할 수 있게 클래스의 static 필드로 빼내었다.    
+메소드 안에서 메소드를 호출할 수 있다. main 메소드 안에서 여러 메소드를 호출할 수 있었던 것처럼 우리가 만든 메소드도 다른 메소드를 호출할 수 있다. 이렇게 메소드를 이용해서 만든 코드는 지금의 예시에서는 큰 차이가 존재하진 않지만 재사용성이 훨씬 높아진다.
+<pre><code>
+public class AccountingApp {
+	
+		double valueOfSupply = 10000.0;
+		double vatRate = 0.1;
+
+		public static double getVAT(){
+			return valueOfSupply*vatRate;
+		}
+
+		public static double getTotal(){
+			return valueOfSupply + getVAT();
+		}
+		public static void main(String[] args){
+		System.out.println("Value of supply:"+valueOfSupply);
+		System.out.println("VAT:"+vat);
+		System.out.println("Total:"+total);
+	}
+}
+</code></pre>
+
+<h2>JAVA 메소드 7</h2>
+<h3>수업을 마치며</h3>
+클래스는 비슷한 연관된 일을 하는 메소드와 변수들을 묶어 그룹으로 만든 것이다. 이러한 클래스를 틀로 하여 실제로 프로그램에서 동작하는 객체들을 인스턴스라고 한다. 이러한 객체를 뼈대로 해서 프로그램을 만들어 가는 방식을 객체 지향 프로그래밍(OOP, Object Oriented Programming)이라고 한다. 
 <pre><code>
 </code></pre>
+
+<h2>JAVA 메소드 8, 9</h2>
+<h3>부록</h3>
+public은 동작을 제어하기 위해 바깥으로 드러나서 호출할 수 있는 것들을 위해 지정한다.
+private은 동작을 위해 꼭 필요하지만, 외부에서 굳이 알 필요도 없거나 알아서는 안 되는 것들을 위해서 지정.
+<pre><code>
+public class AccessLevelModifiersMethod {
+
+	private static void hi() {
+		System.out.println("Hi");
+	}
+	public static void main(String[] args) {
+		hi();
+	}
+
+}
+</code></pre>
+
+클래스는 일종의 형틀이고, 인스턴스는 그 형틀로 찍어서 만든 실체.   
+
+클래스는 프로그램에서 한번 정의되는 형틀이다. 즉 여러 개 가질 수 없는 유일무이한 메소드.   
+
+반면 static이 아닌 메소드는 인스턴스의 메소드로, 프로그램 안에서 여러 개 있을 수 있고, 그 인스턴스를 통해서 접근하는 메소드이다.
+
+<pre><code>
+class Print{
+    public String delimiter;
+    public void a() {
+        System.out.println(this.delimiter);
+        System.out.println("a");
+        System.out.println("a");
+    }
+    public void b() {
+        System.out.println(this.delimiter);
+        System.out.println("b");
+        System.out.println("b");
+         
+    }
+    public static void c(String delimiter) {
+        System.out.println(delimiter);
+        System.out.println("b");
+        System.out.println("b");
+    }
+}
+public class staticMethod {
+     
+    public static void main(String[] args) {
+//      Print.a("-");
+//      Print.b("-");
+         
+        // instance
+        Print t1 = new Print();
+        t1.delimiter = "-";
+        t1.a();
+        t1.b();
+        Print.c("$");
+         
+         
+//      Print.a("*");
+//      Print.b("*");
+         
+        Print t2 = new Print();
+        t2.delimiter = "*";
+        t2.a();
+        t2.b();
+    }
+     
+ 
+}
+</code></pre>
+
+<h2>JAVA 객체지향 프로그래밍 1</h2>
+<h3>수업소개</h3>
+클래스를 이용해서 프로그램의 구조를 만들어 가는 방식을 객체 지향 프로그래밍(Object Oriented Programming)이라 함. 이러한 방식을 언어 차원에서 지원하는 프로그래밍 언어를
+객체 지향 언어(Object Oriented Language)라고 부름.
+
+<h2>JAVA 객체지향 프로그래밍 2</h2>
+<h3>남의 클래스 남의 인스턴스</h3>
+
+<pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+ 
+public class OthersOOP {
+ 
+    public static void main(String[] args) throws IOException {
+        // class : System, Math, FileWriter
+        // instance : f1, f2
+         
+        System.out.println(Math.PI);
+        System.out.println(Math.floor(1.8));
+        System.out.println(Math.ceil(1.8));
+         
+        FileWriter f1 = new FileWriter("data.txt");
+        f1.write("Hello");
+        f1.write(" Java");
+         
+         
+        FileWriter f2 = new FileWriter("data2.txt");
+        f2.write("Hello");
+        f2.write(" Java2");
+        f2.close();
+         
+        f1.write("!!!");
+        f1.close();
+    }
+ 
+}
+</code></pre>
+
+<h2>JAVA 객체지향 프로그래밍 3</h2>
+<h3>변수와 메소드</h3>
+
+<pre><code>
+class Print {
+	public static String delimiter = "";
+	public static void printA() {
+		System.out.println(delimiter);
+		System.out.println("A");
+		System.out.println("A");
+	}
+	public static void printB() {
+		System.out.println(delimiter);
+		System.out.println("B");
+		System.out.println("B");
+	}
+	public static void printAll() {
+		printA();
+		printA();
+		printB();
+		printB();
+	}
+}
+public class MyOOP {
+	
+	public static void main(String[] args) {
+		Print.delimiter = "----";
+		Print.printAll();
+		
+		Print.delimiter = "****";
+		Print.printAll();
+	}	
+}
+</code></pre>
+
+<h2>JAVA 객체지향 프로그래밍 4-1</h2>
+<h3>클래스(존재 이유와 기본형식)</h3>
+클래스는 관련있는 변수들과 메소드를 묶어서 정리정돈을 할 수 있게 함. 구분자로 분리된 A 문자열과 B 문자열을 출력하는 메소드를 Print라는 클래스로 따로 떼어내서 만들 수 있게 됨. 굳이 메소드의 이름을 printA라고 적지 않고 A라고만 적어도 Print 객체의 A 메소드이기 때문에 A를 출력한다는 의미를 쉽게 유추할 수 있게 됨.
+
+<h2>JAVA 객체지향 프로그래밍 4-2</h2>
+<h3>클래스(형식)</h3>
+클래스는 한 파일에 여러 개를 넣을 수 있지만, 접근제어자 public은 java 파일과 같은 이름의 클래스에 하나만 붙일 수 있다. 한 파일 안에 여러 클래스가 등장할 수도 있지만
+여러 클래스를 각각 하나의 java 파일로 만들게 되면, 프로그램의 기능별로 쪼개어서 소스 코드를 별도로 저장할 수 있게 됨.
 <pre><code>
 </code></pre>
+
+<h2>JAVA 객체지향 프로그래밍 5</h2>
+<h3>인스턴스</h3>
+클래스는 어떠한 형틀이고, 인스턴스는 그 형틀로 찍어낸 실체와도 같은 것.
+그래서 클래스를 바꾸면 그것으로 찍어낸 모든 사물들이 다른 형태를 갖게 되고
+형틀로 찍어낸 사물을 바꾸면 그 사물의 자매와도 같은 다른 사물에는 어떠한 영향도 없음.
+즉 객체를 인스턴스로 만들면, 그 인스턴스를 바꾼다고 해도 다른 인스턴스에는 영향을 끼치지 않게 됨.
 <pre><code>
+class Print {
+	public String delimiter = "";
+	public void A() {
+		System.out.println(delimiter);
+		System.out.println("A");
+		System.out.println("A");
+	}
+	public void B() {
+		System.out.println(delimiter);
+		System.out.println("B");
+		System.out.println("B");
+	}
+}
+public class MyOOP {
+	
+	public static void main(String[] args) {
+		Print p1 = new Print();
+		p1.delimiter = "----";
+		Print p2 = new Print();
+		p2.delimiter = "****";
+		
+		p1.A();
+		p2.A();
+		p1.B();
+		p2.B();	
+	}	
+}
 </code></pre>
+
+<h2>JAVA 객체지향 프로그래밍 6</h2>
+<h3>static</h3>
+static 변수와 메소드는 클래스에서 생성된 모든 인스턴스가 공유하는 자원이다. 인스턴스를 만들지 않고도 클래스에서 직접 호출할 수 있다.
 <pre><code>
+class Foo{
+    public static String classVar = "I class var";
+    public String instanceVar = "I instance var";
+    public static void classMethod() {
+        System.out.println(classVar);   //Ok
+//      System.out.println(instanceVar);   //Error
+    }
+    public void instanceMethod() {
+        System.out.println(classVar);   //Ok
+        System.out.println(instanceVar);   //Ok
+    }
+}
+public class StaticApp {
+ 
+    public static void main(String[] args) {
+        System.out.println(Foo.classVar);    //OK
+//      System.out.println(Foo.instanceVar);    //Error
+        Foo.classMethod();
+//      Foo.instanceMethod();
+         
+        Foo f1 = new Foo();
+        Foo f2 = new Foo();
+//      
+        System.out.println(f1.classVar);    //I class var
+        System.out.println(f1.instanceVar);    //I instance var
+//      
+        f1.classVar = "changed by f1";
+        System.out.println(Foo.classVar);    //changed by f1
+        System.out.println(f2.classVar);     //changed by f1
+//      
+        f1.instanceVar = "changed by f1";
+        System.out.println(f1.instanceVar);    //changed by f1
+        System.out.println(f2.instanceVar);    //I instance var
+    }
+ 
+}
 </code></pre>
+static 변수와 메소드는 해당 클래스로 생성된 모든 인스턴스가 공유하는 자원이기 때문에
+인스턴스 모두는 같은 static 변수와 메소드를 사용할 수 있음. static이 아닌 변수와 메소드는 인스턴스마다 고유의 값을 가지기 때문에 인스턴스에서 변경한다고 해도 다른 인스턴스에 어떠한 영향도 끼치지 않음.
+
+
+<h2>JAVA 객체지향 프로그래밍 7</h2>
+<h3>생성자와 this</h3>
 <pre><code>
+class Print {
+	public String delimiter = "";
+	public Print(String delimiter) {
+		this.delimiter = delimiter;
+	}
+	public void A() {
+		System.out.println(delimiter);
+		System.out.println("A");
+		System.out.println("A");
+	}
+	public void B() {
+		System.out.println(delimiter);
+		System.out.println("B");
+		System.out.println("B");
+	}
+}
+public class MyOOP {
+    public static void main(String[] args) {
+        Print p1 = new Print("----");
+        p1.A();
+        p1.A();
+        p1.B();
+        p1.B();
+ 
+        Print p2 = new Print("****");
+        p2.A();
+        p2.A();
+        p2.B();
+        p2.B();
+         
+         
+        p1.A();
+        p2.A();
+        p1.A();
+        p2.A();
+    }
+}
 </code></pre>
+클래스는 인스턴스를 생성할 때 클래스의 이름과 같은 이름인 생성자로 인스턴스를 만든다.
+클래스는 따로 만들어 주지 않아도 기본 생성자를 포함하고 있는데, Print()와 같이 아무것도 지정하지 않는 생성자를 기본 생성자라고 한다. 기본적으로 public 권한으로 설정되어 있어서 따로 명시하지 않아도 클래스를 만들게 되면 새로운 인스턴스를 생성할 수 있도록 만든다.   
+ 
+만약 처음에 인스턴스를 생성할 때부터 필드를 초기화하고 싶다면, 필드를 초기화할 수 있게 만드는 생성자를 구성할 수 있다. 생성자는 접근 권한을 설정할 수 있고, 리턴 타입은 명시하지 않으며, 초기화할 필드에 따라 파라미터를 설정한다.   
+
+생성자도 클래스 내부의 메소드이고, 보통 초기화할 필드를 파라미터로 넣기 때문에
+생성자 내부에서 필드에 접근할 때 파라미터의 이름과 같게 되어 접근하기 어렵게 된다.
+이 때 사용하는 예약어가 this인데, this는 인스턴스를 가리키는 예약어임.
+this를 통해 필드를 손쉽게 사용할 수 있다.
+
+<h2>JAVA 객체지향 프로그래밍 8-1</h2>
+<h3>활용(클래스화)</h3>
 <pre><code>
+class Accounting{
+    public static double valueOfSupply;
+    public static double vatRate = 0.1;
+    public static double getVAT() {
+        return valueOfSupply * vatRate;
+    }
+    public static double getTotal() {
+        return valueOfSupply + getVAT();
+    }
+}
+public class AccountingApp {
+    public static void main(String[] args) {
+        Accounting.valueOfSupply = 10000.0;
+        System.out.println("Value of supply : " + Accounting.valueOfSupply);
+        System.out.println("VAT : " + Accounting.getVAT());
+        System.out.println("Total : " + Accounting.getTotal());
+  
+    }
+}
 </code></pre>
+
+<h2>JAVA 객체지향 프로그래밍 8-2</h2>
+<h3>활용(인스턴스화)</h3>
 <pre><code>
+class Accounting{
+    public double valueOfSupply;
+    public static double vatRate = 0.1;
+    public Accounting(double valueOfSupply) {
+        this.valueOfSupply = valueOfSupply;
+    }
+    public double getVAT() {
+        return valueOfSupply * vatRate;
+    }
+    public double getTotal() {
+        return valueOfSupply + getVAT();
+    }
+}
+public class AccountingApp {
+    public static void main(String[] args) {
+        Accounting a1 = new Accounting(10000.0);
+         
+        Accounting a2 = new Accounting(20000.0);
+         
+        System.out.println("Value of supply : " + a1.valueOfSupply);
+        System.out.println("Value of supply : " + a2.valueOfSupply);
+         
+        System.out.println("VAT : " + a1.getVAT());
+        System.out.println("VAT : " + a2.getVAT());
+         
+        System.out.println("Total : " + a1.getTotal());
+        System.out.println("Total : " + a2.getTotal());
+         
+  
+    }
+}
 </code></pre>
+인스턴스를 이용하면, 각각의 인스턴스는 서로에게 영향을 미치지 않기 때문에
+독립적으로 작업을 처리하게 만들 수 있다.
+여기에 인스턴스의 이름까지 상황에 걸맞은 이름을 붙여 준다면 이해하기 쉬움.
+
+<h2>JAVA 객체지향 프로그래밍 9</h2>
+<h3>수업을 마치며</h3>
+어떤 클래스와 비슷한 다른 것을 만들고 싶을 때 가능한 2가지 방법이 있음. 어떤 클래스의 변수와 메소드들을 모두 복사해서 만드는 방법과 상속이라는 개념을 이용하는 방법.
+어떤 클래스를 상속해서 새로운 클래스를 만들게 되면, 어떤 클래스의 모든 변수와 메소드들이 기본적으로 새로운 클래스에 포함되게 되고, 만약 부족하다면 기존의 변수와 메소드를 덮어쓰거나, 아예 새로운 변수와 메소드를 추가할 수도 있다.
+ 
+그리고 인터페이스는 일종의 규격과도 같은 것이다. 인터페이스도 마찬가지로, 앞으로 어떤 클래스를 만들지는 전혀 모르지만, 그 클래스에 대한 규격을 선언하는 것.
+
+
+<h2>JAVA 상속 1</h2>
+<h3>수업소개</h3>
+두 개의 클래스를 만들어야 할 일이 있는데 한 클래스가 다른 클래스의 기능들을 모두 포함하는 형태라면 모두 복사해서 일일이 넣는 것이 아니라 상속의 기능을 활용.
 <pre><code>
+class Cal {
+	public int sum(int v1, int v2) {
+		return v1 + v2;
+	}
+}
+class Cal3 extends Cal{
+	
+}
+...
+public class InheritanceApp {
+
+	public static void main(String[] args) {
+		Cal c = new Cal();
+		System.out.println(c.sum(2, 1));
+		Cal3 c3 = new Cal3();
+		System.out.println(c3.sum(2, 1));
+	}
+
+}
 </code></pre>
+
+<h2>JAVA 상속 2</h2>
+<h3>기능의 개선과 발전</h3>
 <pre><code>
+class Cal3 extends Cal{
+	
+	public int sum(int v1, int v2) {
+		System.out.println("Cal3!!!");
+		return v1 + v2;
+	}
+
+	public int minus(int v1, int v2) {
+		return v1 - v2;
+	}
+}
 </code></pre>
+
+<h2>JAVA 상속 3</h2>
+<h3>Overriding, Overloading</h3>
+오버로딩은 상속과는 직접적인 관련이 없음. 특정 이름을 지닌 메소드가 있다고 할지라도 우리는 같은 이름을 가진 메소드를 또 만들 수 있다. 다만 파라미터의 형식이 달라야 함.
 <pre><code>
+class Cal {
+	public int sum(int v1, int v2) {
+		return v1 + v2;
+	}
+	// Overloading
+	public int sum(int v1, int v2, int v3) {
+		return v1 + v2 + v3;
+	}
+}
+</code></pre>
+이렇게 같은 이름을 가진 메소드라고 해도, 메소드를 호출할 때는 파라미터의 형식도 모두 보기 때문에 프로그램은 각각의 메소드가 서로 애매하다고 판단하지 않는다.
+반면 overriding은 같은 클래스 안에서는 이뤄질 수 없고,
+상속 관계를 가진 클래스 사이에서 이뤄질 수 있다.
+
+<h2>JAVA 상속 4</h2>
+<h3>This Super</h3>
+this는 인스턴스를 가리키는 키워드.
+이와 비슷하게 부모 클래스를 가리키는 super라는 키워드도 존재.
+자식 클래스에서 super를 이용하여 접근 권한이 부여된 부모 클래스의 변수와 메소드에 접근할 수 있다.
+<pre><code>
+class Cal {
+	public int sum(int v1, int v2) {
+		return v1 + v2;
+	}
+	// Overloading
+	public int sum(int v1, int v2, int v3) {
+		return this.sum(v1, v2) + v3;
+	}
+}
+class Cal3 extends Cal{
+	// Overriding
+	public int sum(int v1, int v2) {
+		System.out.println("Cal3!!!");
+		return super.sum(v1, v2);
+	}
+
+	public int minus(int v1, int v2) {
+		return v1 - v2;
+	}
+}
+</code></pre>
+
+<h2>JAVA 상속 5</h2>
+<h3>상속과 생성자</h3>
+부모 클래스에 생성자가 있는 경우에 자식 클래스의 생성자는 자식 클래스에 이미 해당하는 생성자가 만들어져 있다면 그것을 호출하겠지만, 그렇지 않다면 암묵적으로 부모 클래스의 생성자(super())를 호출하게 된다.
+하지만 상속관계에 있는 클래스의 생성자에 기본 생성자(인자가 전혀 없는 생성자)가 아닌 
+인자가 포함된 생성자를 사용하는 경우 주의 필요.
+
+<pre><code>
+class Cal{
+    int v1,v2;
+    Cal(int v1, int v2){
+        System.out.println("Cal init!!");
+        this.v1 = v1; this.v2 = v2;
+    }
+    public int sum(){return this.v1+v2;}
+}
+
+// Compile Error
+class Cal3 extends Cal{
+    
+    public int minus(){return this.v1-v2;}
+}
+</code></pre>
+위와 같이 부모 클래스에 기본 생성자가 아닌 인자를 주는 생성자만 명시된 경우,
+자식 클래스에서 생성자를 명시적으로 만들지 않는다면 컴파일이 되지 않는다. 자식 클래스에서 생성자를 호출하는 경우(인스턴스 생성), 정의한 생성자가 없기 때문에 부모 클래스의 생성자(super())를 사용해야 하는데, 명시적으로 인자를 받는 생성자만 부모 클래스에 만들어져 있기 때문에 기본 생성자가 없는 것으로 받아들여지기 때문.
+
+자식 클래스의 경우에도, 기본 생성자는 명시적으로 만들지 않고,
+인자를 받는 생성자만 만들었을 경우에는 인수를 주지 않고 인스턴스를 생성할 수 없다.
+<pre><code>
+class Cal{
+    int v1,v2;
+    
+    public int sum(){return this.v1+v2;}
+}
+class Cal3 extends Cal{
+	Cal3(int v1, int v2) {
+		this.v1 = v1;
+		this.v2 = v2;
+        System.out.println("Cal3 init!!");
+    }
+    public int minus(){return this.v1-v2;}
+}
+
+public class InheritanceApp {
+
+	public static void main(String[] args) {
+		Cal c = new Cal();
+        Cal3 c3 = new Cal3(); // Compile Error
+	}
+}
+</code></pre>
+따라서 부모 클래스에 인자를 받는 생성자만 만들었을 경우에는,
+다음과 같이 자식 클래스에도 인자를 받는 생성자를 만들어야 함.
+<pre><code>
+class Cal{
+    int v1,v2;
+    Cal(int v1, int v2){
+        System.out.println("Cal init!!");
+        this.v1 = v1; this.v2 = v2;
+    }
+    public int sum(){return this.v1+v2;}
+}
+class Cal3 extends Cal{
+    Cal3(int v1, int v2) {
+        super(v1, v2);
+        System.out.println("Cal3 init!!");
+    }
+    public int minus(){return this.v1-v2;}
+}
+public class InheritanceApp {
+    public static void main(String[] args) {
+        Cal c = new Cal(2,1);
+        Cal3 c3 = new Cal3(2, 1);
+        System.out.println(c3.sum()); // 3
+        System.out.println(c3.minus()); // 1
+    }
+}
+</code></pre>
+
+<h2>JAVA 상속 6</h2>
+<h3>수업을 마치며</h3>
+
+* 다형성(polymorphism)   
+상속 관계에 있는 클래스간의 호환성을 높여주는 기능. 인스턴스를 생성할 때, 같은 클래스의 자료형을 가진 변수를 선언하여 인스턴스를 생성해왔지만, 부모 클래스의 자료형을 가진 변수를 선언하여 자식 클래스의 인스턴스를 생성할 수 있다. 그렇게 생성한 변수에서 자식 클래스의 변수나 메소드를 호출할 수 있다.
+
+* 접근 제어자(access modifier)   
+접근 제어자에는 이 외에도 default, protected라는 두 개의 접근 제어자가 더 있다.
+default의 경우 같은 패키지 내의 클래스에서는 접근할 수 있는 권한이 있고, 
+protected의 경우 해당 클래스와 자식 클래스를 통해서 접근할 수 있다.
+
+* final 키워드   
+상속과 관련하여 제한을 걸어주는 키워드.
+만약 현재 클래스에서 더 이상 자식 클래스를 생성하지 못하게 막기 위해서는 
+클래스에 final 키워드를 삽입한다. 메소드가 자식 클래스에서 더 이상 오버라이드 되기를 원하지 않는다면 메소드에 final 키워드를 삽입.
+
+* abstract 키워드
+해당 클래스, 메소드가 재정의가 필요하다는 것을 강제하는 키워드.
+abstract 메소드는 선언만 되어 있는 상태이고, abstract 클래스는 인스턴스로 만들 수 없다. 만약 클래스 안에 abstract 메소드가 있다면 그 클래스는 abstract 클래스여야 한다.
+
+
+<h2>JAVA 인터페이스 1</h2>
+<h3>수업소개</h3>
+인터페이스(Interface)를 이용하면 앞으로 만들 클래스의 메소드 규격을 선언할 수 있다.
+<pre><code>
+interface Calculable {
+	int sum(int v1, int v2);
+}
+class RealCal implements Calculable {
+
+	public int sum(int v1, int v2) {
+		return v1 + v2;
+	}	
+}
+</code></pre>
+
+<h2>JAVA 인터페이스 2</h2>
+<h3>인터페이스의 형식</h3>
+인터페이스의 이름은 클래스와 마찬가지로 보통 첫 글자를 대문자로 만들고, 
+"~을 할 수 있는" 것들의 규격이라는 의미에서 형용사의 이름을 붙이기도 함.
+클래스를 상속할 때는 하나의 클래스로부터 상속받을 수 있는 것과 대조적으로
+인터페이스는 여러 개를 모두 적용할 수 있다.
+이 경우 적용한 인터페이스들의 메소드를 모두 구현해야 한다.   
+ 
+인터페이스에는 변수를 정의할 수도 있다.
+다만 변수는 반드시 초기화되어야 한다.
+인터페이스를 적용한 클래스는 변수를 다시 대입할 수 없다.
+<pre><code>
+interface Calculable {
+	double PI = 3.14;
+	int sum(int v1, int v2);
+}
+interface Printable {
+	void print();
+}
+class RealCal implements Calculable, Printable {
+
+	public int sum(int v1, int v2) {
+		return v1 + v2;
+	}
+
+	public void print() {
+		System.out.println("this is RealCal!!!");
+	}	
+	
+}
+
+public class InterfaceApp {
+
+	public static void main(String[] args) {
+		RealCal c = new RealCal();
+		System.out.println(c.sum(2, 1));
+		c.print();
+		System.out.println(c.PI);
+	}
+
+}
+</code></pre>
+
+<h2>JAVA 인터페이스 3</h2>
+<h3>다형성</h3>
+클래스의 인스턴스를 변수로 선언할 때, 해당 클래스의 데이터 타입으로 선언하지 않고
+부모 클래스나 인터페이스를 데이터 타입으로 선언할 수도 있다.
+이렇게 객체의 타입이 부모 클래스, 인터페이스, 자식 클래스 등 여러 형태인데도
+인스턴스로 만든 객체(자식 클래스의 인스턴스)와 같이 행동하는 것을 다형성이라고 한다.
+<pre><code>
+interface Calculable {
+	double PI = 3.14;
+	int sum(int v1, int v2);
+}
+interface Printable {
+	void print();
+}
+class RealCal implements Calculable, Printable {
+
+	public int sum(int v1, int v2) {
+		return v1 + v2;
+	}
+
+	public void print() {
+		System.out.println("this is RealCal!!!");
+	}	
+	
+}
+
+public class InterfaceApp {
+
+	public static void main(String[] args) {
+		Calculable c = new RealCal();
+		System.out.println(c.sum(2, 1));
+		c.print(); // Compile Error
+		System.out.println(c.PI);
+	}
+
+}
+</code></pre>
+
+<h2>JAVA 인터페이스 4</h2>
+<h3>사용설명서 속의 인터페이스</h3>
+<pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
+public class FileWriterApp {
+	public static void main(String[] args) throws IOException {
+		Writer fileWriter = new FileWriter("filewriter.txt");
+		fileWriter.write("data 1");
+		fileWriter.write("data 2");
+		fileWriter.write("data 3");
+
+		fileWriter.close();
+	}
+}
+</code></pre>
+
+<h2>JAVA 인터페이스 5</h2>
+<h3>수업을 마치며</h3>
+클래스의 기능이 너무 많고 구획화를 할 필요가 있다면 
+그 때 인터페이스를 이용해서 프로그램을 만든다. 다른 사람과 협업을 할 때, 서로 공통적으로 적용해야 할 규격이 있을 때도 인터페이스를 이용한다면 좋을 것.
+
+<h2>JAVA 예외 1</h2>
+<h3>수업소개</h3>
+
+<h2>JAVA 예외 2</h2>
+<h3>예외의 발생</h3>
+예외가 발생하는 이유는 여러 경우가 있겠지만 프로그램이 실행하는 동안에
+프로그램을 만들 사람들이 설계한 모양대로 운영되지 않았기 때문일 것임.
+<pre><code>
+public class ExceptionApp {
+	public static void main(String[] args) throws ArithmeticException {
+		System.out.println(1);
+		System.out.println(2/0); // Run-Time Exception ArithmeticException
+		System.out.println(3); 
+	}
+}
+</code></pre>
+자바에서는 숫자를 0으로 나누는 경우에 예외로 처리한다.
+실제로 실행을 시켜보면 ArithmeticException이라고 알려주고, 0으로 나누었다는 설명도 나오게 된다.
+나누는 숫자를 이 경우에는 직접 입력하여 구현하였지만, 
+나누는 숫자를 인자로 받아서 프로그램을 구동하는 경우가 있을 수 있다.
+사용자가 입력한 값에 따라서 나누는 숫자가 결정된다면
+나누는 숫자가 0이 절대 아니라는 보장이 없다.
+
+<h2>JAVA 예외 3</h2>
+<h3>예외의 처리</h3>
+<pre><code>
+public class ExceptionApp {
+	public static void main(String[] args) throws ArithmeticException {
+		System.out.println(1);
+		int[] scores = {10, 20, 30};
+
+		try {
+			System.out.println(2);
+			System.out.println(scores[3]); //ArrayIndexOutOfBoundsException
+			// 여기까지 실행 -> catch(ArrayIndexOutOfBoundsException e)문으로 이동
+			System.out.println(3);
+			System.out.println(2/0); //ArithmeticException
+			System.out.println(4);
+		} catch(ArithmeticException e) {
+			System.out.println("잘못된 계산이네요.");
+		} catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("없는 값을 찾고 계시네요 ^^");
+		}		
+		System.out.println(5); 
+	}
+}
+</code></pre>
+
+<h2>JAVA 예외 4</h2>
+<h3>예외의 우선순위</h3>
+ArithmeticException도 Java API 문서를 참고하면,
+RuntimeException으로부터 상속받은 클래스라는 것을 알 수 있다. RuntimeException은 Exception 클래스로부터 상속받은 클래스임.
+그래서 여러 예외가 있더라도 Exception 클래스를 이용해서 포괄적으로 처리할 수 있다.
+또한, 예외의 처리에 있어서 catch 문의 위치도 중요함.
+try 문에서 발생한 예외는 여러 개의 catch 문을 순서대로 거쳐가면서 
+해당 catch 문의 예외가 이번에 발생한 예외와 맞는지 확인한 후, 맞다면 그 catch 문을 실행한다.
+<pre><code>
+public class ExceptionApp {
+	public static void main(String[] args) throws ArithmeticException {
+		System.out.println(1);
+		int[] scores = {10, 20, 30};
+
+		try {
+			System.out.println(2);
+			System.out.println(scores[3]); //ArrayIndexOutOfBoundsException
+			System.out.println(3);
+			System.out.println(2/0); //ArithmeticException
+			System.out.println(4);
+		} catch (ArithmeticException e) {
+			System.out.println("계산이 잘못된 것 같아요.");
+		} catch (Exception e) {
+			System.out.println("뭔가 이상합니다. 오류가 발생했습니다. ");
+		}	
+		System.out.println(5); 
+	}
+}
+</code></pre>
+
+<h2>JAVA 예외 5</h2>
+<h3>e의 비밀</h3>
+예외들의 인스턴스에는 예외가 발생한 원인, 어디서 발생했는지 등에 대한 정보들이 들어 있다. 이것들을 이용하면 프로그램의 어디서 왜 예외가 발생했는지 손쉽게 알 수 있다.
+getMessage 메소드를 이용하면 예외 상황에 대한 디테일한 정보를 얻을 수 있다.
+다만, 이러한 정보를 통해, 코드의 내용이나 구조 등을 나쁜 의도를 가진 사람들에게 노출할 수도 있기 때문에 보통 이러한 정보를 사용자가 직접 볼 수 있게 구성하지는 않고, 
+서버 측에서 로그 파일 등을 이용해 관리자만 볼 수 있게 처리한다.
+
+<h2>JAVA 예외 6</h2>
+<h3>Checked exception vs Unchecked exception</h3>
+우리가 만들었던 프로그램은 ArithmeticException, ArrayIndexOutOfBoundsException 같은 경우는 try catch문으로 잡아내지 않아서 프로그램이 뻗는다고 할지라도
+컴파일해서 실행할 수 있기는 했다. 이러한 Exception들을 unchecked Exception이라고 부른다. unchecked Exception은 모두 RuntimeException 클래스로부터 상속된 예외들이다.
+하지만 try catch문 등으로 잡아내지 않으면 프로그램이 컴파일도 안되는 예외들도 있다.
+이러한 예외들을 checked Exception이라고 부른다. Throwable로부터 상속된 모든 클래스에서 RuntimeException을 제외한 모든 에러와 예외들이
+checked Exception에 속한다. checked Exception은 반드시 예외 처리를 해 주어야 한다.
+만약 IOException을 처리하지 않는다면 제대로 컴파일이 되지 않는다.
+<pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CheckedExceptionApp {
+
+	public static void main(String[] args) {
+		try {
+			FileWriter f = new FileWriter("data.txt");
+			f.write("Hello");
+			f.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+</code></pre>
+
+<h2>JAVA 예외 7</h2>
+<h3>Finally와 Resource 다루기</h3>
+대표적인 자원으로는 파일, 네트워크, 데이터베이스 등이 있다.
+이러한 자원들은 프로그램 외부에 존재하기 때문에 우리의 프로그램이 온전히 제어하지 못한다. 프로그램만을 위해 존재하지 않기 때문에 읽기나 쓰기 작업을 하는 도중에 상황에 따라 연결이 불량하여 작업이 실패할 수 있다. 그래서 이러한 자원을 사용할 때는 자원을 붙들기 위해 파일의 경우 점유상태를 나타내기도 하고, 네트워크나 데이터베이스는 연결 상태를 유지한다. 그리고 우리가 필요한 작업을 끝내고 나서는 자원을 놓아주는 작업을 한다.      
+    
+그런데, try 문에서 오류가 발생하면 이후에 작업이 있더라도 catch문으로 넘어간다.
+자원을 놓아주는 작업을 try 문에 넣게 되면, 예외가 발생했을 때 자원을 놓아주는 작업을 하지 못하게 된다. 그래서 예외가 발생했든, 발생하지 않았든 자원을 일단 잡았으면 놓아주는 작업을 실행하도록 해야 한다. 이런 경우에 사용하는 형식이 finally 문이다.
+finally 문은 try 문에서 예외가 발생했거나 발생하지 않았거나 무조건 실행된다.
+<pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CheckedExceptionApp {
+
+	public static void main(String[] args) {
+		FileWriter f = null;
+		try {
+			f = new FileWriter("data.txt");
+			f.write("Hello");
+			// close를 하기 전에 예외가 발생한다면 close가 실행되지 않음
+			// f.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (f != null) {
+				try {
+					f.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}			
+		}
+	}
+
+}
+</code></pre>
+
+<h2>JAVA 예외 8</h2>
+<h3>Try with Resource</h3>
+try-with-resource문은 try 문에 괄호를 추가하여 그 안에 사용할 자원을 정의한다.
+객체를 여러 개 선언할 수도 있고, 세미콜론(;)으로 구별한다. 객체의 정의 가장 마지막에는 세미콜론(;)을 넣지 않는다. 전체 try문(try, catch, finally 등)이 종료되면 생성된 인스턴스는 자동으로 종료되기 때문에 명시적으로 close를 이용해서 자원을 놓아주지 않는다.
+
+<pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class TryWithResource {
+
+	public static void main(String[] args) {
+		try (FileWriter f = new FileWriter("data.txt")) {
+			f.write("Hello");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+</code></pre>
+
+<h2>JAVA 예외 1</h2>
+<h3>수업을 마치며</h3>
+<pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class ThrowException {
+
+	public static void main(String[] args) throws IOException {
+		FileWriter f = new FileWriter("./data.txt");
+		f.write("Hello");
+		f.close();
+	}
+
+}
 </code></pre>
