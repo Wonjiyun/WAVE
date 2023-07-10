@@ -2392,7 +2392,7 @@ public class TryWithResource {
 }
 </code></pre>
 
-<h2>JAVA 예외 1</h2>
+<h2>JAVA 예외 9</h2>
 <h3>수업을 마치며</h3>
 <pre><code>
 import java.io.FileWriter;
