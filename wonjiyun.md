@@ -2410,20 +2410,22 @@ public class ThrowException {
 </code></pre>
 
 
-<h1>DO it!</h1>
-HTML이란 
+<h1>Do it! HTML+CSS+자바스크립트 웹 표준의 정석</h1>
+<h2>HTML 기본 문서 만들기</h2>
+
+* HTML이란 
 HT(Hyper Text): 웹에서 자유롭게 오갈 수 있는 링크   
 M(Mark up): 텍스트뿐만 아니라 이미지, 영상 등을 표시함. 마크업에 사용하는 꼬리표를 태그라 함   
 -> HTML은 웹에서 자유롭게 오갈 수 있는 웹 문서를 만드는 언어
 
 ~~~
 <!doctype html>   //현재 문서가 html5 언어로 작성한 웹 문서라는 뜻.
-	<html lang="ko">    //웹 문서의 시작과 끝을 나타내는 태그. 웹 브라우저가 <html>태그를 만나면 </html>까지 소스를 읽어 화면에 표시
-	<head>
+	<html lang="ko">    //웹 문서의 시작과 끝을 나타내는 태그. 웹 브라우저가 <html>태그를 만나면 </html>까지 소스를 읽어 화면에 표시.
+	<head>    //웹 브라우저가 웹 문서를 해석하는 데 필요한 정보를 입력하는 부분. 웹 브라우저 화면에 나타나지 않는다.
 		<meta charset="UTF-8">
 		<title>HTML 기본문서</title>
 	</head>
-	<body>
+	<body>    //실제로 웹 브라우저 화면에 나타나는 내용.
 		<h1> 프런트엔드 웹 개발 </h1>
 		<hr>
 		<p>HTML</p>
@@ -2433,20 +2435,35 @@ M(Mark up): 텍스트뿐만 아니라 이미지, 영상 등을 표시함. 마크
 </html> 
 ~~~
 
+* head 태그
+- 문서 관련 정보 입력, 웹 브라우저 화면엔 보이지 않음.
+- 문서에서 사용할 외부 파일 링크
 
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
+* 문자 세트 등 문서 정보가 들어 있는 meta 태그: 한글로 된 내용을 표시하기 위해 UTF-8문자 세트를 사용한다. 이외에도 다양한 문서 정보를 지정.
+~~~
+<meta charset="UTF-8">
+~~~
+
+* 문서 제목을 나타내는 title 태그
+~~~
+<title>HTML 기본문서</title>
+~~~
+
+* body 태그
+- 실제 브라우저에 표시될 내용 입력
+- 태부분의 태그가 body 태그와 /body 태그 사이에서 사용하는 태그들
+- !을 치고 shift 누르며 enter 누르면 html의 기본 형식 코드가 뜬다.
+- 들여쓰기는 실제 웹 브라우저에 영향을 끼치진 않음. 가독성을 위해 쓰는 것.
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>첫 번째 문서 연습</title>
+</head>
+<body>
+  <h1>웹 문서 만들기</h1>
+</body>
+</html>
+~~~
