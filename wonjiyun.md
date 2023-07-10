@@ -2408,3 +2408,46 @@ public class ThrowException {
 
 }
 </code></pre>
+
+
+<h1>DO it!</h1>
+HTML이란 
+HT(Hyper Text): 웹에서 자유롭게 오갈 수 있는 링크   
+M(Mark up): 텍스트뿐만 아니라 이미지, 영상 등을 표시함. 마크업에 사용하는 꼬리표를 태그라 함   
+-> HTML은 웹에서 자유롭게 오갈 수 있는 웹 문서를 만드는 언어
+
+<pre><code>
+<!doctype html>   //현재 문서가 html5 언어로 작성한 웹 문서라는 뜻.
+	<html lang="ko">    //웹 문서의 시작과 끝을 나타내는 태그. 웹 브라우저가 <html>태그를 만나면 </html>까지 소스를 읽어 화면에 표시
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML 기본문서</title>
+	</head>
+	<body>
+		<h1> 프런트엔드 웹 개발 </h1>
+		<hr>
+		<p>HTML</p>
+		<p>CSS</p>
+		<p>자바스크립트</p>
+	</body>
+</html> 
+</code></pre>
+
+
+
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
