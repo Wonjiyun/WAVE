@@ -1,4 +1,4 @@
-<h1>5월 1일 boostcorse 쉽게 배우는 자바1 1, 2, 3, 4, 5<h1>
+<h1>boostcorse 쉽게 배우는 자바1 1, 2, 3, 4, 5<h1>
 <h2>2-1</h2>
 
 <pre><code>
@@ -173,7 +173,7 @@ public class HelloWorldRaspberryPi {
 }
 </code></pre>
 
-<h1>5월 2일 boostcorse 쉽게 배우는 자바1 6, 7<h1>
+
 <h2>6-1</h2>
 <h3>데이터와 연산</h3>
 
@@ -295,7 +295,7 @@ public class StringOperation {
 }
 </code></pre>
 
-<h1>5월 3일 boostcorse 쉽게 배우는 자바1 8, 9, 10<h1>
+
 <h2>8-1</h2>
 <h3>변수의 정의</h3>
 
@@ -1031,7 +1031,7 @@ public class AccountingClassApp {
 }
 </code></pre>
 
-<h1>5월 10일 boostcorse 쉽게 배우는 자바2<h1>
+<h1>boostcorse 쉽게 배우는 자바2<h1>
 <h2>1</h2>
 <h3>수업소개</h3>
 
