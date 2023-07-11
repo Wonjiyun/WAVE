@@ -2624,3 +2624,423 @@ M(Mark up): 텍스트뿐만 아니라 이미지, 영상 등을 표시함. 마크
 <a href="../05/order.html" target="_blank">주문서 작성하기</a>
 //주문서 작성하기란 텍스트에 멀티미디어가 들어있는 문서로 이동
 ~~~
+
+<h2>입력 양식 작성하기(1)</h2>
+
+* form 태그 ~ /form 태그
+* label 태그 ~ /label 태그
+* input태그
+	* type="text": 텍스트 필드
+	* type="password": 비밀번호 필드
+	* type="submit" value:"표시될 텍스트": 값을 전송하는 필드
+	* type="email": 이메일 필드
+	* type="tel": 전화번호 필드  
+	
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹 폼 삽입하기</title>
+</head>
+<body>
+  <form action="">
+    <label for="user-id">아이디: </label>
+    <input type="text" id="user-id">
+    
+    <label>비밀번호: <input type="password"></label>
+    <input type="submit" value="로그인">
+  </form>
+</body>
+</html>
+~~~
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>폼 삽입하기</title>
+</head>
+<body>
+  <form action="">
+    <ul id="shipping">
+      <li>
+        <label for="prod">주문 상품</label>
+        <input type="text" id="prod" value="상품용 3kg">
+      </li>
+      <li>
+        <label for="user-name">이름</label>
+        <input type="text" id="user-name">
+      </li>
+      <li>
+        <label for="addr">배송 주소</label>
+        <input type="text" id="addr">
+      </li>
+      <li>
+        <label for="mail">이메일</label>
+        <input type="email" id="mail">
+      </li>
+      <li>
+        <label for="phone">연락처</label>
+        <input type="tel" id="phone">
+      </li>
+    </ul>    
+  </form> 
+</body>
+</html>
+~~~
+   
+
+* input태그  
+	* type="radio": 여러 항목 중 한 개의 항목만을 선택할 수 있는 필드
+		* radio의 value 값 적기 전 name=""을 기입 후 두 개 항목 모두 같은 그룹이란 것을 뜻하기 위해 같은 네임 작성
+	* type="checkbox": 여러 개 항목 중 두 개 이상의 항목을 선택할 수 있는 필드
+		* radio와 checkbox는 서버에 전송되는 value값이 필수 
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>레드향 주문하기</title>
+</head>
+<body>
+  <h1>레드향 주문하기</h1>
+  <form>
+    <fieldset>
+      <legend>상품 선택</legend>
+      <p><b>주문할 상품을 선택해 주세요.</b></p>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="s_3">선물용 3kg</label> //선물용 3kg 항목 선택하면 value값인 s_3이 서버에 전송되는 것
+          <input type="number">개
+        </li>
+        <li>
+          <label><input type="checkbox" value="s_5">선물용 5kg</label>
+          <input type="number">개
+        </li>
+        <li>
+          <label><input type="checkbox" value="f_3">가정용 3kg</label>
+          <input type="number">개
+        </li>
+        <li>
+          <label><input type="checkbox" value="f_5">가정용 5kg</label>
+          <input type="number">개
+        </li>
+      </ul>   
+      <p><b>포장 선택</b></p>
+      <ul>
+        <li><label><input type="radio" name="gift" value="yes" >선물 포장</label></li>
+        <li><label><input type="radio" name="gift" value="no">선물 포장 안 함</label></li>
+      </ul>     
+    </fieldset>
+    <fieldset>
+      <legend>배송 정보</legend>
+      <ul>
+        <li>
+          <label for="user-name">이름 </label>
+          <input type="text" id="user-name">
+        </li>
+        <li>
+          <label for="addr">배송 주소</label>
+          <input type="text" id="addr">
+        </li>
+        <li>
+          <label for="mail">메일 주소</label>
+          <input type="email" id="mail">
+        </li>        
+        <li>
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone">
+        </li>
+      </ul>  
+    </fieldset>      
+  </form>
+</body>
+</html>
+~~~
+ 
+<h2>입력 양식 작성하기(2)</h2>
+  
+* input태그
+	* type="number": 화살표를 이용한 숫자 필드
+	* type="range": 슬라이드 막대를 이용한 숫자 필드
+		* min="", max="" 속성을 이용해 최솟값, 최댓값 설정
+		* value="" 속성으로 화면에 나타나는 초기값 설정 가능
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>레드향 주문하기</title>
+</head>
+<body>
+  <h1>레드향 주문하기</h1>
+  <form>
+    <fieldset>
+      <legend>상품 선택</legend>
+      <p><b>주문할 상품을 선택해 주세요.</b></p>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="s_3">선물용 3kg</label>
+          <input type="number" min="0" max="5">개 (최대 5개)
+        </li>
+        <li>
+          <label><input type="checkbox" value="s_5">선물용 5kg</label>
+          <input type="number" min="0" max="3" value="1">개 (최대 3개)
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <label><input type="checkbox" value="f_3">가정용 3kg</label>
+          <input type="range" min="0" max="5">개 (최대 5개)
+        </li>
+        <li>
+          <label><input type="checkbox" value="f_5">가정용 5kg</label>
+          <input type="range" min="0" max="3" value="1">개 (최대 3개)
+        </li>
+      </ul>      
+      <p><b>포장 선택</b></p>
+      <ul>
+        <li><label><input type="radio" name="gift" value="yes">선물 포장</label></li>
+        <li><label><input type="radio" name="gift" value="no">선물 포장 안 함</label></li>
+      </ul>    
+    </fieldset>
+    <fieldset>
+      <legend>배송 정보</legend>
+      <ul id="shipping">
+        <li>
+          <label for="user-name">이름 </label>
+          <input type="text" id="user-name">
+        </li>
+        <li>
+          <label for="addr">배송 주소</label>
+          <input type="text" id="addr">
+        </li>
+        <li>
+          <label for="mail">이메일</label>
+          <input type="email" id="mail">
+        </li>        
+        <li>
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone">
+        </li>
+      </ul>  
+    </fieldset>
+    <div>
+      <input type="submit" value="주문하기"> 
+      <input type="reset" value="취소하기">
+    </div>        
+  </form>
+</body>
+</html>
+~~~
+   
+* input 태그
+	* type="date"
+	* type="month"
+	* type="week"
+	* type="time"
+	* type="datetime"
+		* 시간, 날짜 모두 min, max 속성으로 최소값, 최댓값으로 제한 줄 수 있음
+
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날짜와 시간</title>
+</head>
+<body>
+  <form>
+    <h1>날짜 지정하기</h1>
+    <input type="date">
+    <input type="month">
+    <input type="week">
+    <hr>
+    <h1>시간 지정하기</h1>
+    <input type="time">
+    <input type="datetime-local">
+    <hr>
+    <h1>범위 제한하기</h1>
+    <input type="date" min="2020-02-01" max="2020-02-15">
+    <input type="time">
+  </form>
+</body>
+</html>
+~~~
+   
+* input 태그
+	* type="hidden": 화면엔 나타나진 않지만 서버에 전송되는 값 ex)사용자가 굳이 입력하지 않아도 되는 것
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+		<meta charset="UTF-8">
+		<title>로그인</title>
+  </head>
+  <body>
+	<form>
+    <fieldset>
+      <input type="hidden" name="url" id="url" value="사이트를 통한 직접 로그인">
+    	<label>아이디: <input type="text" id="user_id" size="10"></label>
+      <label>비밀번호: <input type="password" id="user_pw" size="10"></label>
+      <input type="submit" value="로그인">
+    </fieldset>
+  </form>
+  </body>
+</html>
+~~~
+
+   
+<h2>입력 양식 작성하기(3)</h2>
+
+* input 태그
+	* required: 필수 필드 마지막에 작성
+	* readonly: 사용자가 읽을 수만 있는 필드
+	* autofocus: 사용자가 가장 먼저 기입할만한 필드에 커서가 깜빡이게 할 수 있음
+
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>레드향 주문하기</title>
+  <link rel="stylesheet" href="css/form2.css">
+</head>
+<body>
+  <h1>레드향 주문하기</h1>
+  <form>
+    <fieldset>
+      <legend>배송 정보</legend>
+      <ul id="shipping">
+        <li>
+          <label for="prod">주문 상품</label>
+          <input type="text" id="prod" value="상품용 3KG" readonly>
+        </li>
+        <li>
+          <label for="user-name">이름 </label>
+          <input type="text" id="user-name" autofocus required>
+        </li>
+        <li>
+          <label for="addr">배송 주소</label> 
+          <input type="text" id="addr" required>
+        </li>
+        <li>
+          <label for="mail">이메일</label>
+          <input type="email" id="mail">
+        </li>        
+        <li>
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" placeholder="하이픈 빼고 입력해 주세요.(01012345678)" required>
+        </li>
+        <li>
+          <label for="d-day">배송 지정</label>
+          <input type="date" id="d-day"> <small>(주문일로부터 최소 3일 이후)</small>
+        </li>        
+      </ul>  
+    </fieldset>
+    <div>
+      <input type="submit" value="주문하기"> 
+      <input type="reset" value="취소하기">
+    </div>        
+  </form>
+</body>
+</html>
+~~~
+
+* textarea 태그 ~ /textarea 태그: 여러 줄의 텍스트 입력할 수 있는 필드
+	* cols, rows 속성으로 행렬 제한 줄 수 있음
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>레드향 주문하기</title>
+  <link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+  <div id="container">
+    <h1>레드향 주문하기</h1>
+    <form>
+      <fieldset>
+        <legend>배송 정보</legend>
+        <ul id="shipping">
+          <li>
+            <label for="user-name">이름 </label>
+            <input type="text" id="user-name">
+          </li>
+          <li>
+            <label for="addr">배송 주소</label>
+            <input type="text" id="addr">
+          </li>
+          <li>
+            <label for="mail">이메일</label>
+            <input type="email" id="mail">
+          </li>        
+          <li>
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone">
+          </li>
+          <li>
+            <label for="d-day">배송 지정</label>
+            <input type="date" id="d-day"> <small>(주문일로부터 최소 3일 이후)</small>
+          </li>     
+          <li>
+            <label for="memo">메모</label>
+            <textarea id="memo" cols="40" rows="4"></textarea>
+          </li>   
+        </ul>  
+      </fieldset>
+      <div>
+        <input type="submit" value="주문하기"> 
+        <input type="reset" value="취소하기">
+      </div>        
+    </form>
+  </div>
+</body>
+</html>
+~~~
+
+* select 태그 ~ /select 태그: 화살표를 누르면 여러 항목이 보일 수 있게 함
+	* option 태그 ~ /option 태그: 항목 필드
+		* 서버로 전송되는 value값 필수이며 초기값의 항목에 selected 기입
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>레드향 주문하기</title>
+</head>
+<body>
+  <h1>레드향 주문하기</h1>
+  <form action="">
+    <fieldset>
+      <legend>상품 선택</legend>
+      <p><b>주문할 상품을 선택해 주세요.</b></p>
+      <label>
+        <select>
+          <option value="special_3" selected>선물용 3kg</option>
+          <option value="special_5">선물용 5kg</option>
+          <option value="family_3">가정용 3kg</option>
+          <option value="family_5">가정용 5kg</option>
+        </select>
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>상품 선택</legend>
+      <p><b>주문할 상품을 선택해 주세요.</b></p>
+      <label><input type="text" list="goods"></label>
+      <datalist id="goods">
+        <option value="special_3">선물용 3kg</option>
+        <option value="special_5">선물용 5kg</option>
+        <option value="family_3">가정용 3kg</option>
+        <option value="family_5">가정용 5kg</option>
+      </datalist>      
+    </fieldset>      
+  </form>
+</body>
+</html>
+~~~
