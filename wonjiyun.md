@@ -3043,3 +3043,418 @@ M(Mark up): 텍스트뿐만 아니라 이미지, 영상 등을 표시함. 마크
 </body>
 </html>
 ~~~
+
+<h2>CSS의 기본(1)</h2>
+
+stylesheet를 사용하는 이유
+* 디자인과 내용을 분리하기 위해
+* 여러가지 기기에 탄력적인 반응을 하기 위해 -> 크기에 따른 배치 설정
+   
+stylesheet 아무것도 저장되지 않은 웹 브라우저: 브라우저 기본 스타일
+   
+
+* 인라인 스타일: 태그 안에서 딱 한 번만 쓰는 스타일
+~~~
+<body>
+  <h1 style="color:blue">레드향</h1>
+</body>
+~~~
+   
+* 내부 stylesheet: head 부분에 style 태그 ~ /style 태그 사용
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 소개 페이지</title>
+  <style>
+    h1 {                  //h1: 선택자
+      color:blue;         //color: 속성, blue: 속성 값
+			font-size:3.5em;
+			font-style:italic;
+    }
+  </style>
+~~~
+   
+* 외부 stylesheet: head 부분에 link 태그 사용. style 정보만 따로 모아서 별도의 파일로 저장해준 다음 웹 문서에 연결하는 것. 여러 문서에서 사용 가능.
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 소개 페이지</title>
+  <link rel="stylesheet" href="css/style.css">     //href=""의 파일을 불러올 건데 이 파일은 rel="" 파일이다.
+</head>
+~~~
+
+<h2>CSS의 기본(2)</h2>
+
+* 전체 선택자
+	* 페이지에 있는 모든 요소를 대상으로 스타일을 적용할 때 사용.
+	* 웹 브라우저의 기본 스타일을 초기화할 때 자주 사용.
+	* style 태그 * {속성: 값; ...} /style태그
+~~~
+<style>
+	*{
+		margin:0;     //여백
+	}
+</style>
+~~~
+
+* 타입 선택자
+	* 문서에서 특정 태그를 사용한 모든 요소에 스타일이 적용됨.
+	* style 태그 태그명 {스타일 규칙} /style태그
+~~~
+<style>
+	p{
+		font-style: italic;
+	}
+</style>
+<body>
+	<div>
+		<p>레드향</p>
+		<p>레드향은 붉은 빛</p>
+	</div>
+</body>
+~~~
+
+* class 선택자
+	* 요소의 특정 부분에만 스타일 적용
+	* 마침표 다음에 클래스 이름 지정
+	* 문서 안에서 여러 번 반복할 스타일이라면 클래스 선택자로 정의
+	* style 태그 .클래스명 {스타일 규칙} /style태그
+~~~
+<style>
+	.accent{
+		border: 1px solid #1000;        //테두리
+		padding: 5px;                   // 테두리와 내용 사이의 여백
+	}
+	.bg{
+		background-color: #ddd;         //배경색
+	}
+</style>
+<body>
+	<div>
+		<p class="accent">레드향</p>               // 한 줄 모두를 스타일 적용
+		<p><span class="bg">레드향</span>은 붉은 빛</p>     //원하는 부분에만 스타일 적용
+	</div>
+</body>
+~~~
+
+* id 선택자
+	* 요소의 특정 부분에만 스타일 적용
+	* 파운드(#) 다음에 id 이름 지정
+	* 문서 안에서 한 번만 사용한다면 id 선택자로 정의
+	* style 태그 #아이디명 {스타일 규칙} /style태그
+~~~
+<style>
+	#container{
+		width: 500px;                  //너비
+		margin: 10px auto;             //중앙 배치
+		padding: 10px;                 //테두리와 내용 사이 여백
+		border: 1px solid #1000;       //테두리 굵기와 색깔
+	}
+</style>
+<body>
+	<div id="containger">
+		<p>레드향</p>
+		<p>레드향은 붉은 빛</p>
+	</div>
+</body>
+~~~
+
+* 그룹 선택자
+	* 같은 스타일을 사용하는 선택자를 한꺼번에 정의
+	* 쉼표로 구분하여 여러 선택자를 나열
+	* 선택자1, 선택자2 {스타일 규칙}
+~~~
+h1, p{
+	text-align:c;         //중앙 정렬
+}
+~~~
+   
+
+캐스케이딩 스타일 시트
+* 캐스케이딩의 의미
+	* 캐스케이딩(Cascading): 위에서 아래로 흐른다는 뜻. 즉 계단식으로 적용된다는 의미로 사용.
+	* 선택자에 여러 스타일이 적용될 때 스타일 충동을 막기 위해 우선순위에 따라 적용할 스타일을 결정함.
+* 스타일 충돌을 막는(캐스케이딩)의 원칙
+	* 1. 스타일 우선순위: 스타일 규칙의 중요도와 적용 범위에 따라 우선순위가 결정되고 그 우선순위에 따라 위에서 아래로 스타일 적용.
+	* 2. 스타일 상속: 태그들의 포함 관계에 따라 부모 요소의 스타일을 자식 요소로, 위에서 아래로 전달.
+	* 스타일 시트에서 캐스캐이딩은 가장 기본적인 개념이기 때문에 일반석으로 스타일 시트는 캐스캐이딩 스타일 시트(CSS)와 같은 의미로 사용됨.   
+   
+* 원칙 1: 스타일 우선 순위
+	* 1. 얼마나 중요한가에 따라
+		* 1. 사용자 스타일: 시스템에서 만든 스타일. 사용자가 제어할 수 없음
+		* 2. 제작자 스타일: 웹 사이트를 만들 때 제작자가 만든 스타일
+		* 3. 브라우저 스타일: 브라우저의 기본 스타일
+	* 2. 얼마나 한정지을 수 있는가에 따라
+		* 1. !important: 어떤 스타일보다 우선 적용되는 스타일
+		* 2. 인라인 스타일: 해당 태그에만 적용되는 스타일
+		* 3. id 스타일: 특정부분에만 적용되는 스타일. 문서 안에서 한 번만 사용됨.
+		* 4. 클래스 스타일: 특정 부분에만 적용되는 스타일. 문서 안에서 여러 번 사용됨.
+		* 5. 타입 스타일: 특정 태그에만 적용되는 스타일. 문서 안의 같은 태그에 모두 적용됨.
+	* 3. 소스 순서에 따라
+		* 중요도와 명시도가 같다면 소스 순서에 따라 결정.
+		* 소스에서 나중에 온 스타일이 먼저 온 스타일을 덮어씀.
+* 원칙 2: 스타일 상속
+	* 자식 요소에서 별도로 스타일을 지정하지 않으면 부모 요소에 있는 스타일 속성들이 자식 요소로 전달됨.
+	* 상속을 이용하면 스타일 시트를 효과적으로 만들 수 있다.
+	* 주의할 것은 스타일의 모든 속성이 부모 요소에서 자식 요소로 상속되는 것은 아니라는 점. 예로, 글자 색은 상속되지만 배경 색은 상속되지 않음.
+
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 소개 페이지</title>
+  <style>
+    p {
+      color:black;
+    } 
+    h1 {
+      color: brown !important;
+    } 
+    p {
+      color:blue;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="color:green">레드향</h1>                                  //brown 적용
+  <p style="color:red;">껍질에 붉은 빛이 돌아 레드향이라 불린다.</p>     //red 적용
+  <p>레드향은 한라봉과 귤을 교배한 것으로</p>                           //blue 적용
+  <p>일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>                  //blue 적용
+</body>
+</html> 
+~~~
+
+<h2>텍스트를 표현하는 다양한 스타일(1)</h2>
+
+글자와 관련된 속성
+* font-family: 글꼴 종류를 지정
+* font-size: 글자 크기를 지정
+* font-style: 글자를 이탤릭체로 표시할지 지정
+* font-weight: 글자의 굵기를 지정
+
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 소개 페이지</title>
+  <style>
+		@import url('url 주소');        //적용 원하는 외부 글꼴 url 파일
+    body{
+      font-size: 20px;             //전체 글자 크기
+    }
+    h1 { 
+      font-family: url주소 글꼴, 바탕;     //글꼴 - 첫 번째 글꼴이 적용 안 될 경우 두 번째 글꼴 적용
+      font-size: 3em;             //글자 크기 - 1em=16px
+    } 
+    .accent {
+      font-size:150%;            //글자 크기
+      font-weight: 800;          //글자 굵기
+    }
+    .italic{
+      font-style: italic;        //글자 스타일
+    }
+  </style>
+</head>
+<body>
+  <h1>레드향</h1>
+  <p>껍질에 붉은 빛이 돌아 <span class="accent">레드향</span>이라 불린다.</p>
+  <p>레드향은 한라봉과 귤을 교배한 것으로</p>
+  <p class="italic">일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>    
+</body>
+</html> 
+~~~
+
+color 속성
+* 글자 색 지정
+* 16진수 값이나 rbg값, hsl값, 색상 이름 중에서 사용
+	* 색상 이름 표기법
+		* 잘 알려진 색상 이름으로 표시. 기본 색상 16가지
+		* 웹 안전 색상(web-safe color)
+			* 모든 브라우저에서 표현할 수 있는 색상
+			* 기본 16가지 색상을 표함해 모두 216가지
+	* 16진수 표기법
+		* #ffff처럼 #과 함께 6자리의 16진수로 표시
+		* 앞에서부터 두자리씩 묶어 빨강, 초록, 파랑의 양
+		* 하나도 섞이지 않았을 때는 00, 가득 섞였을 때는 ff로 표시.
+		* 000000(검은색) ~ ffffff(흰색)
+		* 두 자리씩 중복될 경우 줄여 사용할 수 있음 
+			* #ffff00 -> #ff0
+			* #cccccc -> #ccc
+	* hsl/hsla 표기법
+		* color.hsl(240, 100%, 50%)처럼 세 자리의 숫자로 표시
+		* 앞의 숫자부터 색상(hue), 채도(saturation), 밝기(light)의 양
+		* 투명도를 조절할 때는 마지막에 알파값 추가
+			* hsla(240, 100%, 50%, 0.3)
+		* 알파값은 불투명도를 나타내는 값으로 0~1 값 중에서 사용
+			* 1은 불투명, 0은 완전 투명
+	* rgb/rgba 표기법
+		* color.rgb(255,0,0)처럼 세 자리의 숫자로 표시
+		* 앞의 숫자부터 빨강, 초록, 파랑의 양
+		* 하나도 섞이지 않았을 때는 0, 가득 섞였을 때는 255
+		* 투명도를 조절할 때는 마지막에 알파값 추가
+			* color.rgba(255, 0, 0, 0.3)
+		* 알파값은 불투명도를 나타내는 값으로 0~1 값 중에서 사용
+			* 1은 불투명, 0은 완전 투명
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 소개 페이지</title>
+  <style>
+		h1{
+			font-size:120px;
+			color: rgba(255, 166, 0, 0.527);
+		}
+  </style>
+</head>
+<body>
+  <h1>레드향</h1>
+  <p>껍질에 붉은 빛이 돌아 <span class="accent">레드향</span>이라 불린다.</p>
+  <p>레드향은 한라봉과 귤을 교배한 것으로</p>
+  <p class="italic">일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>    
+</body>
+</html> 
+~~~
+
+<h2>텍스트를 표현하는 다양한 스타일(2)</h2>
+
+텍스트 스타일 속성
+* color: 글자색을 지정
+* text-decoration: 텍스트에 밑줄이나 취소선을 표시할지 여부를 지정
+* text-transform: 텍스트 전체, 또는 첫 글자를 대문자로 표시
+* text-shadow: 텍스트에 그림자를 추가
+* letter-spacing: 글자 사이의 간격을 지정
+* word-sapcing: 단어 사이의 간격을 지정
+* text-align: 텍스트 정렬 방법을 지정
+* line-height: 줄 간격을 조절
+
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>line-height</title>
+    <style>
+      p {
+        width:600px;
+        border:1px solid #222;
+        padding:10px;
+        margin:10px;
+      }
+      .tstyle {
+        text-align: right;
+        line-height:0.7;
+        text-shadow: 5px 5px 3px #ccc;
+      }
+      .tstyle2 {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>    
+    <p>껍질에 붉은 빛이 돌아 레드향(감평甘平)이라 불린다. 레드향은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+    <p class="tstyle">껍질에 붉은 빛이 돌아 레드향(감평甘平)이라 불린다. <span class="tstyle2">레드향</span>은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+    <p>껍질에 붉은 빛이 돌아 레드향(감평甘平)이라 불린다. 레드향은 한라봉과 귤을 교배한 것으로 일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+  </body>
+</html>
+~~~
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>불릿과 번호 바꾸기</title>
+  <style>
+    h1{
+      color:blue;
+    }
+    .mylist{
+      list-style-type: square;
+    }
+    .mylist2{
+      list-style-type: upper-alpha;
+    }
+  </style>
+</head>
+<body>
+  <h1>도서 시리즈</h1>
+  <ul class="mylist">
+    <li>Do it! 시리즈</li>
+    <li>첫 코딩 시리즈</li>
+    <li>된다 시리즈</li>
+  </ul>
+
+  <ol class="mylist2">
+    <li>Do it! 시리즈</li>
+   <li>첫 코딩 시리즈</li>
+    <li>된다 시리즈</li>
+  </ol>
+</body>
+</html>
+~~~
+~~~
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>표 스타일</title>
+    <style>
+			table {
+				caption-side: bottom;           //표 캡션 위치
+				border: 1px solid black;        //표 테두리는 검은 색 실선으로
+				border-collapse: collapse;      //표 테두리 선을 하나로
+			}
+			td, th {
+				border: 1px dotted black;       //셀 테두리는 검은 색 점선으로
+				padding: 10px;                  //셀 테두리와 내용 사이의 여백
+				text-align: center;             //셀 내용 가운데 정렬
+			}
+		</style>
+	</head>
+	<body>		
+		<h2>상품 구성</h2>
+		<table>
+			<caption>선물용과 가정용 상품 구성</caption>
+			<thead>
+				<tr>
+					<th>용도</th>
+					<th>중량</th>
+					<th>갯수</th>
+					<th>가격</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">선물용</td>
+					<td>3kg</td>
+					<td>11~16과</td>
+					<td>35,000원</td>
+				</tr>
+				<tr>
+					<td>5kg</td>
+					<td>18~26과</td>
+					<td>52,000원</td>
+				</tr>
+				<tr>
+					<td rowspan="2">가정용</td>
+					<td>3kg</td>
+					<td>11~16과</td>
+					<td>30,000원</td>
+				</tr>   
+				<tr>
+					<td>5kg</td>
+					<td>18~26과</td>
+					<td>47,000원</td>
+				</tr>
+			</tbody>        
+		</table>
+	</body>
+</html>
+~~~
